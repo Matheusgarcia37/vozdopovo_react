@@ -60,17 +60,18 @@ const Home = ({produtos}: InferGetServerSidePropsType<typeof getServerSideProps>
           </div>  
         </div>
         <div className={styles.container_produtos}>
-          {produtos.map((produto: any) => (
-            <div className={styles.container_produtos__produto}>
+          {produtos.map((produto: any, key: any) => {
+            return (
+              <div className={styles.container_produtos__produto} key={key}>
               <div className={styles.container_produtos__produto__image}>
-                <Image src={produto.imagem} width={200} height={200} />
+                <Image src={produto.imagem} width={200} height={200} alt="produto"/>
               </div>
               <div className={styles.container_produtos__produto__text}>
                 <h3>{produto.nome}</h3>
                 <p>{produto.descricao}</p>
               </div>
-            </div>
-          ))}
+            </div>)
+          })}
         </div>
       </main>
     </div>
