@@ -7,7 +7,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem 1.5rem;
-    background-color: #006633;
+    background-color: #2F5840;
 }
 
 .hamburger {
@@ -57,11 +57,12 @@
 
 @media only screen and (max-width: 925px) {
     .navmenu {
+        z-index: 50;
         position: fixed;
         left: -100%;
         top: 4rem;
         flex-direction: column;
-        background-color:  #006633;
+        background-color:  #2F5840;
         width: 100%;
         border-radius: 0 10px 10px 0;
         text-align: center;

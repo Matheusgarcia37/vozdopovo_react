@@ -1,10 +1,14 @@
-import type { NextPage } from 'next'
+import type { InferGetServerSidePropsType, NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Lottie from 'react-lottie';
 import agricultura1 from '../lotties/agricultura1.json'
-const Home: NextPage = () => {
+import axios from 'axios';
+
+
+const Home = ({produtos}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  console.log(produtos);
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -13,6 +17,8 @@ const Home: NextPage = () => {
       preserveAspectRatio: "xMidYMid slice"
     }
   };
+
+
   return (
     <div className={styles.container}>
       <Head>
@@ -37,20 +43,50 @@ const Home: NextPage = () => {
           
           </div>
           <div className={styles.containerApresetation__image}>
-          <Lottie 
+        {/*   <Lottie 
             options={defaultOptions}
               height={400}
               width={400}
-          />
+          /> */}
           </div>
         </div>
+
+        <div className={styles.linha_de_produtos}>
+          <div className={styles.linha_de_produtos__text}>
+            <p>Conheças nossa</p>
+            <h3>
+              Linha de produtos
+            </h3>
+          </div>  
+        </div>
+        <div className={styles.container_produtos}>
+          {produtos.map((produto: any) => (
+            <div className={styles.container_produtos__produto}>
+              <div className={styles.container_produtos__produto__image}>
+                <Image src={produto.imagem} width={200} height={200} />
+              </div>
+              <div className={styles.container_produtos__produto__text}>
+                <h3>{produto.nome}</h3>
+                <p>{produto.descricao}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </main>
-
-      <footer className={styles.footer}>
-
-      </footer>
     </div>
   )
+}
+
+
+//get produtos from api/produtos_destaque with typescript
+export async function getServerSideProps() {
+  const res = await axios.get('http://localhost:3000/api/produtos_destaque');
+  const produtos = res.data;
+  return {
+    props: {
+      produtos
+    }
+  }
 }
 
 export default Home
