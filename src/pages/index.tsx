@@ -7,8 +7,66 @@ import agricultura1 from '../lotties/agricultura1.json'
 import axios from 'axios';
 
 
-const Home = ({produtos}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  console.log(produtos);
+type Data = {
+  nome: string;
+  descricao: string;
+  codigo: string;
+  preco: number;
+  imagem: string;
+}
+
+const Home = () => {
+  const produtos: Data[] = [
+    {
+      nome: 'Produto 1',
+      descricao: 'Descrição do produto 1',
+      codigo: '1',
+      preco: 100,
+      imagem: 'https://via.placeholder.com/300x300',
+    },
+    {
+      nome: 'Produto 2',
+      descricao: 'Descrição do produto 2',
+      codigo: '2',
+      preco: 200,
+      imagem: 'https://via.placeholder.com/300x300',
+    },
+    {
+      nome: 'Produto 3',
+      descricao: 'Descrição do produto 3',
+      codigo: '3',
+      preco: 300,
+      imagem: 'https://via.placeholder.com/300x300',
+    },
+    {
+      nome: 'Produto 4',
+      descricao: 'Descrição do produto 4',
+      codigo: '4',
+      preco: 400,
+      imagem: 'https://via.placeholder.com/300x300',
+    },
+    {
+      nome: 'Produto 5',
+      descricao: 'Descrição do produto 5',
+      codigo: '5',
+      preco: 500,
+      imagem: 'https://via.placeholder.com/300x300',
+    },
+    {
+      nome: 'Produto 6',
+      descricao: 'Descrição do produto 6',
+      codigo: '6',
+      preco: 600,
+      imagem: 'https://via.placeholder.com/300x300',
+    }, 
+    {
+      nome: 'Produto 7',
+      descricao: 'Descrição do produto 7',
+      codigo: '7',
+      preco: 700,
+      imagem: 'https://via.placeholder.com/300x300',
+    }
+  ];
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -76,18 +134,6 @@ const Home = ({produtos}: InferGetServerSidePropsType<typeof getServerSideProps>
       </main>
     </div>
   )
-}
-
-
-//get produtos from api/produtos_destaque with typescript
-export async function getServerSideProps() {
-  const res = await axios.get('http://localhost:3000/api/produtos_destaque');
-  const produtos = res.data;
-  return {
-    props: {
-      produtos
-    }
-  }
 }
 
 export default Home
