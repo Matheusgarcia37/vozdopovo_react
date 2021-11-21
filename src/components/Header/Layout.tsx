@@ -2,7 +2,18 @@ import Link from 'next/link'
 import { useState } from "react";
 import styles from "./styles.module.scss";
 import styles2 from '../../styles/Home.module.css'
+
+import whatsapp from '../../lotties/whatsapp.json'
+import Lottie from 'react-lottie';
 export default function Layout({ children }: { children: React.ReactNode }) {
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: whatsapp,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice"
+    }
+  };
 
   const [isOpen, setIsOpen] = useState(false);
   const openMenu = () => setIsOpen(!isOpen);
@@ -69,6 +80,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     </header>
     {children}
     {/* {footer} */}
+    <div className={styles.whatsapp}>
+      <Lottie
+        options={defaultOptions}
+        height={70}
+        width={70}
+      />
+    </div>
     <div className={styles2.container} style={{display: 'none'}}>
       <footer className={styles.footer}>
       </footer>

@@ -178,6 +178,7 @@
   background-color: white;
   padding: .4rem;
   box-shadow: 0 10px 27px rgba(0, 0, 0, 0.1);;
+  transition: all .2s ease;
 }
 
 .container_produtos__produto:hover {
