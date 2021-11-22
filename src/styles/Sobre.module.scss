@@ -1,0 +1,29 @@
+.container_sobre {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0 3rem;
+    text-align: justify;
+    p {
+        font-size: .93rem;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        color: #090F41;
+        text-decoration: none;
+        transition: all 0.3s ease-in-out;
+    }
+}
+.margin_text {
+    margin-left: 2rem
+}
+.title {
+    margin: 0;
+
+    width: 100vw;
+    text-align: center;
+    background-color: #090F41;
+    color: #FEB537;
+    font-family: 'Poppins', sans-serif;
+}
