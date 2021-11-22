@@ -2,6 +2,8 @@ import Link from 'next/link'
 import { useState } from "react";
 import styles from "./styles.module.scss";
 import styles2 from '../../styles/Home.module.css'
+import Image from 'next/image'
+import logo from '../../assets/logo.jpeg'
 
 import whatsapp from '../../lotties/whatsapp.json'
 import Lottie from 'react-lottie';
@@ -21,7 +23,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <header className={styles2.header}>
       <nav className={styles.navbar}>
         <Link href='/'>
-          <a className={styles.navlogo}>Jr. Agropeças</a>
+          <a className={styles.navlogo}><Image src={logo} width={250} height={120} alt="produto"/></a>
         </Link>
         <ul className={isOpen === false ?
           styles.navmenu : styles.navmenu + ' ' + styles.active}>

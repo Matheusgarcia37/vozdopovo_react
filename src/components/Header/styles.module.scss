@@ -7,7 +7,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem 1.5rem;
-    background-color: #2F5840;
+    background-color: white;
 }
 
 .hamburger {
@@ -38,21 +38,19 @@
 .navlink{
     font-size: .9rem;
     font-weight: 500;
-    color: #60B251;
+    color: #090F41;
     text-transform: uppercase;
     text-decoration: none;
     transition: all 0.3s ease-in-out;
 }
 
 .navlink:hover{
-    color: white;
+    color: #ffb734;
     font-size: .91rem;
 }
 
 .navlogo {
-    font-size: 1.7rem;
-    font-weight: 500;
-    color: white;
+   
 }
 
 @media only screen and (max-width: 925px) {
@@ -60,9 +58,9 @@
         z-index: 50;
         position: fixed;
         left: -100%;
-        top: 4rem;
+        top: 10rem;
         flex-direction: column;
-        background-color:  #2F5840;
+        background-color:   white;
         width: 100%;
         border-radius: 0 10px 10px 0;
         text-align: center;
@@ -83,7 +81,7 @@
         display: block;
         cursor: pointer;
         span {
-            background-color: white;
+            background-color: #222222;
             box-shadow:
             0 10px 27px rgba(0, 0, 0, 0.05);
         }

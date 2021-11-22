@@ -161,7 +161,7 @@
 .linha_de_produtos__text h3 {
   font-size: 1.5rem;
   margin: 0;
-  color: #058C3A;
+  color: #090F41;
   font-family: 'Poppins', sans-serif;
 }
 
@@ -173,8 +173,9 @@
 
 .container_produtos__produto {
   cursor: pointer;
+  max-width: 143px;
   border-radius: 10px;
-  margin: .6rem .6rem;
+  margin: .6rem auto;
   background-color: white;
   padding: .4rem;
   box-shadow: 0 10px 27px rgba(0, 0, 0, 0.1);;
