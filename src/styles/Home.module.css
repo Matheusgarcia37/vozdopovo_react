@@ -14,7 +14,7 @@
   display: flex;
   flex-direction: column;
   max-width: 1300px;
-  width: 100%;
+  width: 97%;
 }
 
 .footer {
@@ -187,7 +187,7 @@
   max-width: 143px;
   border-radius: 10px;
   margin: .6rem auto;
-  background-color: white;
+  background-color: #fafafa;
   padding: .4rem;
   box-shadow: 0 10px 27px rgba(0, 0, 0, 0.1);;
   transition: all .2s ease;

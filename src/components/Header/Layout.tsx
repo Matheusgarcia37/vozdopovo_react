@@ -3,7 +3,7 @@ import { useState } from "react";
 import styles from "./styles.module.scss";
 import styles2 from '../../styles/Home.module.css'
 import Image from 'next/image'
-import logo from '../../assets/logo.jpeg'
+import logo from '../../assets/logo.png'
 
 import whatsapp from '../../lotties/whatsapp.json'
 import Lottie from 'react-lottie';
