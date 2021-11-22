@@ -19,6 +19,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   const [isOpen, setIsOpen] = useState(false);
   const openMenu = () => setIsOpen(!isOpen);
+  const closeMenu = () => setIsOpen(false);
   return <>
     <header className={styles.header}>
       <nav className={styles.navbar}>
@@ -31,42 +32,42 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <Link href='/'>
               <a className={isOpen === false ?
                 styles.navlink : styles.navlink + ' ' + styles.active}
-                onClick={openMenu}>Home</a>
+                onClick={closeMenu}>Home</a>
             </Link>
           </li>
           <li className={styles.navitem}>
             <Link href='/produtos'>
               <a className={isOpen === false ?
                 styles.navlink : styles.navlink + ' ' + styles.active}
-                onClick={openMenu}>Produtos</a>
+                onClick={closeMenu}>Produtos</a>
             </Link>
           </li>
           <li className={styles.navitem}>
             <Link href='/sobre'>
               <a className={isOpen === false ?
                 styles.navlink : styles.navlink + ' ' + styles.active}
-                onClick={openMenu}>Sobre</a>
+                onClick={closeMenu}>Sobre</a>
             </Link>
           </li>
           <li className={styles.navitem}>
             <Link href='/representantes'>
               <a className={isOpen === false ?
                 styles.navlink : styles.navlink + ' ' + styles.active}
-                onClick={openMenu}>Representantes</a>
+                onClick={closeMenu}>Representantes</a>
             </Link>
           </li>
           <li className={styles.navitem}>
             <Link href='/catalogo'>
               <a className={isOpen === false ?
                 styles.navlink : styles.navlink + ' ' + styles.active}
-                onClick={openMenu}>Catálogo</a>
+                onClick={closeMenu}>Catálogo</a>
             </Link>
           </li>
           <li className={styles.navitem}>
             <Link href='/contato'>
               <a className={isOpen === false ?
                 styles.navlink : styles.navlink + ' ' + styles.active}
-                onClick={openMenu}>Contato</a>
+                onClick={closeMenu}>Contato</a>
             </Link>
           </li>
         </ul>
@@ -82,7 +83,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     </header>
     {children}
     {/* {footer} */}
-    <div className={isOpen === false ? styles.mascara_menu : styles.mascara_menu + " " + styles.mascara_menu_active}></div>
+    <div className={isOpen === false ? styles.mascara_menu : styles.mascara_menu + " " + styles.mascara_menu_active} onClick={closeMenu}></div>
     <div className={styles.whatsapp}>
       <Lottie
         options={defaultOptions}
