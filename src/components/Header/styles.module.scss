@@ -1,5 +1,11 @@
 .header{
-    border-bottom: 1px solid #222222;
+    border-bottom: 3px solid #222222;
+    display: flex;
+    justify-content: center;
+}
+
+.navlogo {
+    width: 200px;
 }
 
 .navbar {
@@ -7,12 +13,16 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem 1.5rem;
-    background-color: white;
-    border-bottom: 3px solid #222222;
+    max-width: 1300px;
+    width: 100%;
 }
 
 .hamburger {
     display: none;
+    z-index: 100;
+    position: absolute;
+    right: 20px;
+    transition: all 0.3s ease-in-out;
 }
 
 .bar {
@@ -38,7 +48,8 @@
 
 .navlink{
     font-size: .9rem;
-    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
     color: #090F41;
     text-transform: uppercase;
     text-decoration: none;
@@ -52,26 +63,34 @@
 
 @media only screen and (max-width: 925px) {
     .navmenu {
-        z-index: 50;
+        margin: 0;
+        z-index: 55;
         position: fixed;
-        left: -100%;
-        top: 10rem;
+        right: -100%;
+        top: 0;
         flex-direction: column;
         background-color:   white;
-        width: 98%;
-        border-radius: 0 10px 10px 0;
+        width: 250px;
         text-align: center;
-        transition: 0.3s;
+        transition: all 0.3s ease-in-out;
         box-shadow:
             0 10px 27px rgba(0, 0, 0, 0.5);
+        height: 100%;
+        align-items: center;
+        justify-content: unset;
+        padding-top: 6rem;
     }
 
     .navmenu.active {
-        left: 0;
+        right: 0;
     }
 
     .navitem {
         margin: 1.5rem 0;
+    }
+
+    .navlink {
+        font-size: 1.2rem;
     }
 
     .hamburger {
@@ -82,8 +101,12 @@
             box-shadow:
             0 10px 27px rgba(0, 0, 0, 0.05);
         }
+        
     }
-
+    .hamburger.active {
+        left: -50px;
+        position: fixed;
+    }
     .hamburger.active .bar:nth-child(2) {
         opacity: 0;
     }
@@ -101,6 +124,20 @@
 
 .footer {
     font-size: 1.5rem;
+}
+
+.mascara_menu {
+    display: none;
+    position: fixed;
+    z-index: 50;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.589);
+}
+.mascara_menu.mascara_menu_active {
+    display: flex;
 }
 
 .whatsapp {

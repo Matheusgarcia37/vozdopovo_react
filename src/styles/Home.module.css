@@ -1,4 +1,5 @@
 .container {
+ 
   min-height: 100vh;
   padding: 0 0.5rem;
   display: flex;
@@ -12,6 +13,8 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  max-width: 1300px;
+  width: 100%;
 }
 
 .footer {
@@ -128,8 +131,16 @@
   flex: 2;
 }
 
-.containerApresetation__image {
-  flex: 1;
+.containerApresetation__text h1 {
+  color: #090F41;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+}
+
+.containerApresetation__text p {
+  color: #2a2c41;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 550;
 }
 
 .linha_de_produtos {

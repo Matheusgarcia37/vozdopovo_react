@@ -20,10 +20,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
   const openMenu = () => setIsOpen(!isOpen);
   return <>
-    <header className={styles2.header}>
+    <header className={styles.header}>
       <nav className={styles.navbar}>
         <Link href='/'>
-          <a className={styles.navlogo}><Image src={logo} width={250} height={120} alt="produto"/></a>
+          <a className={styles.navlogo}><Image src={logo} /* width={250} height={120} */ alt="produto"/></a>
         </Link>
         <ul className={isOpen === false ?
           styles.navmenu : styles.navmenu + ' ' + styles.active}>
@@ -35,35 +35,35 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </Link>
           </li>
           <li className={styles.navitem}>
-            <Link href='/Produtos'>
+            <Link href='/produtos'>
               <a className={isOpen === false ?
                 styles.navlink : styles.navlink + ' ' + styles.active}
                 onClick={openMenu}>Produtos</a>
             </Link>
           </li>
           <li className={styles.navitem}>
-            <Link href='/História'>
+            <Link href='/sobre'>
               <a className={isOpen === false ?
                 styles.navlink : styles.navlink + ' ' + styles.active}
-                onClick={openMenu}>História</a>
+                onClick={openMenu}>Sobre</a>
             </Link>
           </li>
           <li className={styles.navitem}>
-            <Link href='/Representantes'>
+            <Link href='/representantes'>
               <a className={isOpen === false ?
                 styles.navlink : styles.navlink + ' ' + styles.active}
                 onClick={openMenu}>Representantes</a>
             </Link>
           </li>
           <li className={styles.navitem}>
-            <Link href='/Catálogo'>
+            <Link href='/catalogo'>
               <a className={isOpen === false ?
                 styles.navlink : styles.navlink + ' ' + styles.active}
                 onClick={openMenu}>Catálogo</a>
             </Link>
           </li>
           <li className={styles.navitem}>
-            <Link href='/Contato'>
+            <Link href='/contato'>
               <a className={isOpen === false ?
                 styles.navlink : styles.navlink + ' ' + styles.active}
                 onClick={openMenu}>Contato</a>
@@ -82,11 +82,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     </header>
     {children}
     {/* {footer} */}
+    <div className={isOpen === false ? styles.mascara_menu : styles.mascara_menu + " " + styles.mascara_menu_active}></div>
     <div className={styles.whatsapp}>
       <Lottie
         options={defaultOptions}
-        height={70}
-        width={70}
+        height={60}
+        width={60}
       />
     </div>
     <div className={styles2.container} style={{display: 'none'}}>

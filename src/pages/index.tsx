@@ -65,7 +65,106 @@ const Home = () => {
       codigo: '7',
       preco: 700,
       imagem: 'https://via.placeholder.com/300x300',
-    }
+    },
+    {
+      nome: 'Produto 8',
+      descricao: 'Descrição do produto 8',
+      codigo: '8',
+      preco: 800,
+      imagem: 'https://via.placeholder.com/300x300',
+    },
+    {
+      nome: 'Produto 9',
+      descricao: 'Descrição do produto 9',
+      codigo: '9',
+      preco: 900,
+      imagem: 'https://via.placeholder.com/300x300',
+    },
+    {
+      nome: 'Produto 10',
+      descricao: 'Descrição do produto 10',
+      codigo: '10',
+      preco: 1000,
+      imagem: 'https://via.placeholder.com/300x300',
+    },
+    {
+      nome: 'Produto 1',
+      descricao: 'Descrição do produto 1',
+      codigo: '1',
+      preco: 100,
+      imagem: 'https://via.placeholder.com/300x300',
+    },
+    {
+      nome: 'Produto 2',
+      descricao: 'Descrição do produto 2',
+      codigo: '2',
+      preco: 200,
+      imagem: 'https://via.placeholder.com/300x300',
+    },
+    {
+      nome: 'Produto 3',
+      descricao: 'Descrição do produto 3',
+      codigo: '3',
+      preco: 300,
+      imagem: 'https://via.placeholder.com/300x300',
+    },
+    {
+      nome: 'Produto 4',
+      descricao: 'Descrição do produto 4',
+      codigo: '4',
+      preco: 400,
+      imagem: 'https://via.placeholder.com/300x300',
+    },
+    {
+      nome: 'Produto 5',
+      descricao: 'Descrição do produto 5',
+      codigo: '5',
+      preco: 500,
+      imagem: 'https://via.placeholder.com/300x300',
+    },
+    {
+      nome: 'Produto 6',
+      descricao: 'Descrição do produto 6',
+      codigo: '6',
+      preco: 600,
+      imagem: 'https://via.placeholder.com/300x300',
+    }, 
+    {
+      nome: 'Produto 7',
+      descricao: 'Descrição do produto 7',
+      codigo: '7',
+      preco: 700,
+      imagem: 'https://via.placeholder.com/300x300',
+    },
+    {
+      nome: 'Produto 8',
+      descricao: 'Descrição do produto 8',
+      codigo: '8',
+      preco: 800,
+      imagem: 'https://via.placeholder.com/300x300',
+    },
+    {
+      nome: 'Produto 9',
+      descricao: 'Descrição do produto 9',
+      codigo: '9',
+      preco: 900,
+      imagem: 'https://via.placeholder.com/300x300',
+    },
+    {
+      nome: 'Produto 10',
+      descricao: 'Descrição do produto 10',
+      codigo: '10',
+      preco: 1000,
+      imagem: 'https://via.placeholder.com/300x300',
+    },
+    {
+      nome: 'Produto 10',
+      descricao: 'Descrição do produto 10',
+      codigo: '10',
+      preco: 1000,
+      imagem: 'https://via.placeholder.com/300x300',
+    },
+    
   ];
   const defaultOptions = {
     loop: true,
@@ -96,7 +195,7 @@ const Home = () => {
               Jr. Agropecas
             </h1>
             <p>
-              A Jr. Agropecas é uma empresa para venda de produtos agropecuários, e temos como objetivo principal cuidar da satisfação dos nossos clientes.
+              Somos a Auto Jr. Agro Peças  e o nosso negócio é vender  peças agrícolas e prestar serviços de prensagem de mangueiras hidráulicas.
             </p>
           
           </div>
