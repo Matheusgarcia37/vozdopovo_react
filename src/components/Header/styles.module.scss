@@ -75,7 +75,7 @@
         transition: all 0.3s ease-in-out;
         box-shadow:
             0 10px 27px rgba(0, 0, 0, 0.5);
-        height: 100%;
+        height: calc(100vh + 200px);
         align-items: center;
         justify-content: unset;
         padding: 0;
@@ -134,7 +134,7 @@
     z-index: 50;
     top: 0;
     left: 0;
-    height: 100%;
+    height: calc(100vh + 200px);
     width: 100%;
     background-color: rgba(0, 0, 0, 0.589);
 }
