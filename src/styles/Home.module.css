@@ -185,3 +185,9 @@
 .container_produtos__produto:hover {
   box-shadow: 0 10px 27px rgba(0, 0, 0, 0.4);
 }
+/* media for  .container_produtos__produto*/
+@media (min-width: 1000px) {
+  .container_produtos__produto {
+    margin: .6rem .5rem;
+  }
+}
