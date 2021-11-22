@@ -1,5 +1,5 @@
 .header{
-    border-bottom: 1px solid #E2E8F0;
+    border-bottom: 1px solid #222222;
 }
 
 .navbar {
@@ -8,6 +8,7 @@
     align-items: center;
     padding: 1rem 1.5rem;
     background-color: white;
+    border-bottom: 3px solid #222222;
 }
 
 .hamburger {
@@ -57,12 +58,12 @@
         top: 10rem;
         flex-direction: column;
         background-color:   white;
-        width: 100%;
+        width: 98%;
         border-radius: 0 10px 10px 0;
         text-align: center;
         transition: 0.3s;
         box-shadow:
-            0 10px 27px rgba(0, 0, 0, 0.05);
+            0 10px 27px rgba(0, 0, 0, 0.5);
     }
 
     .navmenu.active {
