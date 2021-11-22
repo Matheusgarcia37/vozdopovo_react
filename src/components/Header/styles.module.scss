@@ -78,7 +78,9 @@
         height: 100%;
         align-items: center;
         justify-content: unset;
+        padding: 0;
         padding-top: 6rem;
+        
     }
 
     .navmenu.active {
@@ -104,7 +106,7 @@
         
     }
     .hamburger.active {
-        left: -50px;
+        left: -35px;
         position: fixed;
     }
     .hamburger.active .bar:nth-child(2) {
