@@ -55,6 +55,8 @@
     text-transform: uppercase;
     text-decoration: none;
     transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
 }
 
 .navlink:hover{
@@ -62,7 +64,7 @@
     font-size: .91rem;
 }
 
-@media only screen and (max-width: 925px) {
+@media only screen and (max-width: 1050px) {
     .navmenu {
         margin: 0;
         z-index: 55;
@@ -84,6 +86,7 @@
         overflow-y: hidden;
         
     }
+    
 
     .navmenu.active {
         right: 0;
@@ -94,7 +97,10 @@
     }
 
     .navlink {
-        font-size: 1.2rem;
+        font-size: 1rem;
+        .icon {
+            font-size: 25px;
+        }  
     }
 
     .hamburger {
@@ -108,7 +114,7 @@
         
     }
     .hamburger.active {
-        left: -35px;
+        right: 200px;
         position: fixed;
     }
     .hamburger.active .bar:nth-child(2) {
@@ -152,3 +158,8 @@
     z-index: 50;
 }
 /*  */
+
+.icon {
+    font-size: 22px;
+    margin-right: 5px;
+}

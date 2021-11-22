@@ -4,7 +4,11 @@ import styles from "./styles.module.scss";
 import styles2 from '../../styles/Home.module.css'
 import Image from 'next/image'
 import logo from '../../assets/logo.png'
-
+import { AiOutlineHome, AiOutlineRead } from 'react-icons/ai'
+import { BiShoppingBag } from 'react-icons/bi'
+import { FaUserFriends } from 'react-icons/fa'
+import { GrCatalog } from 'react-icons/gr'
+import { IoMdContact } from 'react-icons/io'
 import whatsapp from '../../lotties/whatsapp.json'
 import Lottie from 'react-lottie';
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -32,42 +36,42 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <Link href='/'>
               <a className={isOpen === false ?
                 styles.navlink : styles.navlink + ' ' + styles.active}
-                onClick={closeMenu}>Home</a>
+                onClick={closeMenu}><AiOutlineHome className={styles.icon}/>Home</a>
             </Link>
           </li>
           <li className={styles.navitem}>
             <Link href='/produtos'>
               <a className={isOpen === false ?
                 styles.navlink : styles.navlink + ' ' + styles.active}
-                onClick={closeMenu}>Produtos</a>
+                onClick={closeMenu}><BiShoppingBag className={styles.icon}/>Produtos</a>
             </Link>
           </li>
           <li className={styles.navitem}>
             <Link href='/sobre'>
               <a className={isOpen === false ?
                 styles.navlink : styles.navlink + ' ' + styles.active}
-                onClick={closeMenu}>Sobre</a>
+                onClick={closeMenu}><AiOutlineRead className={styles.icon}/> Sobre</a>
             </Link>
           </li>
           <li className={styles.navitem}>
             <Link href='/representantes'>
               <a className={isOpen === false ?
                 styles.navlink : styles.navlink + ' ' + styles.active}
-                onClick={closeMenu}>Representantes</a>
+                onClick={closeMenu}><FaUserFriends className={styles.icon}/> Representantes</a>
             </Link>
           </li>
           <li className={styles.navitem}>
             <Link href='/catalogo'>
               <a className={isOpen === false ?
                 styles.navlink : styles.navlink + ' ' + styles.active}
-                onClick={closeMenu}>Catálogo</a>
+                onClick={closeMenu}><GrCatalog className={styles.icon}/> Catálogo</a>
             </Link>
           </li>
           <li className={styles.navitem}>
             <Link href='/contato'>
               <a className={isOpen === false ?
                 styles.navlink : styles.navlink + ' ' + styles.active}
-                onClick={closeMenu}>Contato</a>
+                onClick={closeMenu}><IoMdContact className={styles.icon}/> Contato</a>
             </Link>
           </li>
         </ul>
