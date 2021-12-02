@@ -195,9 +195,8 @@ const Home = () => {
               Jr. Agropecas
             </h1>
             <p>
-              Somos a Auto Jr. Agro Peças  e o nosso negócio é vender  peças agrícolas e prestar serviços de prensagem de mangueiras hidráulicas.
-            </p>
-          
+              Somos Auto Jr. Agro Peças  e o nosso negócio é vender  peças agrícolas e prestar serviços de prensagem de mangueiras hidráulicas.
+            </p>        
           </div>
           <div className={styles.containerApresetation__image}>
         {/*   <Lottie 
@@ -212,7 +211,7 @@ const Home = () => {
           <div className={styles.linha_de_produtos__text}>
             <p>Conheças nossa</p>
             <h3>
-              Linha de produtos
+              Linha de produtos agrícolas
             </h3>
           </div>  
         </div>
