@@ -6,7 +6,7 @@
 }
 
 .navlogo {
-    width: 200px;
+    width: 110px;
 }
 
 .navbar {
@@ -48,7 +48,7 @@
 }
 
 .navlink{
-    font-size: .9rem;
+    font-size: .75rem;
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
     color: #090F41;
@@ -61,7 +61,7 @@
 
 .navlink:hover{
     color: #ffb734;
-    font-size: .91rem;
+    font-size: .80rem;
 }
 
 @media only screen and (max-width: 1050px) {
@@ -97,7 +97,7 @@
     }
 
     .navlink {
-        font-size: 1rem;
+        font-size: .75rem;
         .icon {
             font-size: 25px;
         }  
