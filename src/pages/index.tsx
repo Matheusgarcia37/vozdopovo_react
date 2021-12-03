@@ -1,11 +1,19 @@
-import type { InferGetServerSidePropsType, NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import Lottie from 'react-lottie';
-import agricultura1 from '../lotties/agricultura1.json'
-import axios from 'axios';
+import type { InferGetServerSidePropsType, NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
 
+import agricultura1 from "../lotties/agricultura1.json";
+// import Swiper core and required modules
+import { Navigation, Pagination, Scrollbar, A11y, Autoplay, EffectCoverflow } from "swiper";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 
 type Data = {
   nome: string;
@@ -13,168 +21,166 @@ type Data = {
   codigo: string;
   preco: number;
   imagem: string;
-}
+};
 
 const Home = () => {
   const produtos: Data[] = [
     {
-      nome: 'Produto 1',
-      descricao: 'Descrição do produto 1',
-      codigo: '1',
+      nome: "Produto 1",
+      descricao: "Descrição do produto 1",
+      codigo: "1",
       preco: 100,
-      imagem: 'https://via.placeholder.com/300x300',
+      imagem: "https://via.placeholder.com/300x300",
     },
     {
-      nome: 'Produto 2',
-      descricao: 'Descrição do produto 2',
-      codigo: '2',
+      nome: "Produto 2",
+      descricao: "Descrição do produto 2",
+      codigo: "2",
       preco: 200,
-      imagem: 'https://via.placeholder.com/300x300',
+      imagem: "https://via.placeholder.com/300x300",
     },
     {
-      nome: 'Produto 3',
-      descricao: 'Descrição do produto 3',
-      codigo: '3',
+      nome: "Produto 3",
+      descricao: "Descrição do produto 3",
+      codigo: "3",
       preco: 300,
-      imagem: 'https://via.placeholder.com/300x300',
+      imagem: "https://via.placeholder.com/300x300",
     },
     {
-      nome: 'Produto 4',
-      descricao: 'Descrição do produto 4',
-      codigo: '4',
+      nome: "Produto 4",
+      descricao: "Descrição do produto 4",
+      codigo: "4",
       preco: 400,
-      imagem: 'https://via.placeholder.com/300x300',
+      imagem: "https://via.placeholder.com/300x300",
     },
     {
-      nome: 'Produto 5',
-      descricao: 'Descrição do produto 5',
-      codigo: '5',
+      nome: "Produto 5",
+      descricao: "Descrição do produto 5",
+      codigo: "5",
       preco: 500,
-      imagem: 'https://via.placeholder.com/300x300',
+      imagem: "https://via.placeholder.com/300x300",
     },
     {
-      nome: 'Produto 6',
-      descricao: 'Descrição do produto 6',
-      codigo: '6',
+      nome: "Produto 6",
+      descricao: "Descrição do produto 6",
+      codigo: "6",
       preco: 600,
-      imagem: 'https://via.placeholder.com/300x300',
-    }, 
+      imagem: "https://via.placeholder.com/300x300",
+    },
     {
-      nome: 'Produto 7',
-      descricao: 'Descrição do produto 7',
-      codigo: '7',
+      nome: "Produto 7",
+      descricao: "Descrição do produto 7",
+      codigo: "7",
       preco: 700,
-      imagem: 'https://via.placeholder.com/300x300',
+      imagem: "https://via.placeholder.com/300x300",
     },
     {
-      nome: 'Produto 8',
-      descricao: 'Descrição do produto 8',
-      codigo: '8',
+      nome: "Produto 8",
+      descricao: "Descrição do produto 8",
+      codigo: "8",
       preco: 800,
-      imagem: 'https://via.placeholder.com/300x300',
+      imagem: "https://via.placeholder.com/300x300",
     },
     {
-      nome: 'Produto 9',
-      descricao: 'Descrição do produto 9',
-      codigo: '9',
+      nome: "Produto 9",
+      descricao: "Descrição do produto 9",
+      codigo: "9",
       preco: 900,
-      imagem: 'https://via.placeholder.com/300x300',
+      imagem: "https://via.placeholder.com/300x300",
     },
     {
-      nome: 'Produto 10',
-      descricao: 'Descrição do produto 10',
-      codigo: '10',
+      nome: "Produto 10",
+      descricao: "Descrição do produto 10",
+      codigo: "10",
       preco: 1000,
-      imagem: 'https://via.placeholder.com/300x300',
+      imagem: "https://via.placeholder.com/300x300",
     },
     {
-      nome: 'Produto 1',
-      descricao: 'Descrição do produto 1',
-      codigo: '1',
+      nome: "Produto 1",
+      descricao: "Descrição do produto 1",
+      codigo: "1",
       preco: 100,
-      imagem: 'https://via.placeholder.com/300x300',
+      imagem: "https://via.placeholder.com/300x300",
     },
     {
-      nome: 'Produto 2',
-      descricao: 'Descrição do produto 2',
-      codigo: '2',
+      nome: "Produto 2",
+      descricao: "Descrição do produto 2",
+      codigo: "2",
       preco: 200,
-      imagem: 'https://via.placeholder.com/300x300',
+      imagem: "https://via.placeholder.com/300x300",
     },
     {
-      nome: 'Produto 3',
-      descricao: 'Descrição do produto 3',
-      codigo: '3',
+      nome: "Produto 3",
+      descricao: "Descrição do produto 3",
+      codigo: "3",
       preco: 300,
-      imagem: 'https://via.placeholder.com/300x300',
+      imagem: "https://via.placeholder.com/300x300",
     },
     {
-      nome: 'Produto 4',
-      descricao: 'Descrição do produto 4',
-      codigo: '4',
+      nome: "Produto 4",
+      descricao: "Descrição do produto 4",
+      codigo: "4",
       preco: 400,
-      imagem: 'https://via.placeholder.com/300x300',
+      imagem: "https://via.placeholder.com/300x300",
     },
     {
-      nome: 'Produto 5',
-      descricao: 'Descrição do produto 5',
-      codigo: '5',
+      nome: "Produto 5",
+      descricao: "Descrição do produto 5",
+      codigo: "5",
       preco: 500,
-      imagem: 'https://via.placeholder.com/300x300',
+      imagem: "https://via.placeholder.com/300x300",
     },
     {
-      nome: 'Produto 6',
-      descricao: 'Descrição do produto 6',
-      codigo: '6',
+      nome: "Produto 6",
+      descricao: "Descrição do produto 6",
+      codigo: "6",
       preco: 600,
-      imagem: 'https://via.placeholder.com/300x300',
-    }, 
+      imagem: "https://via.placeholder.com/300x300",
+    },
     {
-      nome: 'Produto 7',
-      descricao: 'Descrição do produto 7',
-      codigo: '7',
+      nome: "Produto 7",
+      descricao: "Descrição do produto 7",
+      codigo: "7",
       preco: 700,
-      imagem: 'https://via.placeholder.com/300x300',
+      imagem: "https://via.placeholder.com/300x300",
     },
     {
-      nome: 'Produto 8',
-      descricao: 'Descrição do produto 8',
-      codigo: '8',
+      nome: "Produto 8",
+      descricao: "Descrição do produto 8",
+      codigo: "8",
       preco: 800,
-      imagem: 'https://via.placeholder.com/300x300',
+      imagem: "https://via.placeholder.com/300x300",
     },
     {
-      nome: 'Produto 9',
-      descricao: 'Descrição do produto 9',
-      codigo: '9',
+      nome: "Produto 9",
+      descricao: "Descrição do produto 9",
+      codigo: "9",
       preco: 900,
-      imagem: 'https://via.placeholder.com/300x300',
+      imagem: "https://via.placeholder.com/300x300",
     },
     {
-      nome: 'Produto 10',
-      descricao: 'Descrição do produto 10',
-      codigo: '10',
+      nome: "Produto 10",
+      descricao: "Descrição do produto 10",
+      codigo: "10",
       preco: 1000,
-      imagem: 'https://via.placeholder.com/300x300',
+      imagem: "https://via.placeholder.com/300x300",
     },
     {
-      nome: 'Produto 10',
-      descricao: 'Descrição do produto 10',
-      codigo: '10',
+      nome: "Produto 10",
+      descricao: "Descrição do produto 10",
+      codigo: "10",
       preco: 1000,
-      imagem: 'https://via.placeholder.com/300x300',
+      imagem: "https://via.placeholder.com/300x300",
     },
-    
   ];
   const defaultOptions = {
     loop: true,
     autoplay: true,
     animationData: agricultura1,
     rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice"
-    }
+      preserveAspectRatio: "xMidYMid slice",
+    },
   };
-
 
   return (
     <div className={styles.container}>
@@ -183,23 +189,48 @@ const Home = () => {
         <meta name="description" content="Generated by create next app" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com"/>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" />
-
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
       </Head>
 
       <main className={styles.main}>
         <div className={styles.containerApresetation}>
           <div className={styles.containerApresetation__text}>
-            <h1>
-              Jr. Agropecas
-            </h1>
-            <p>
-              Somos Auto Jr. Agro Peças  e o nosso negócio é vender  peças agrícolas e prestar serviços de prensagem de mangueiras hidráulicas.
-            </p>        
+            <Swiper
+              modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+              spaceBetween={50}
+              slidesPerView={1}  
+              autoplay= {{delay: 2500, disableOnInteraction: false}}
+              onSwiper={(swiper) => console.log(swiper)}
+              onSlideChange={() => console.log("slide change")}
+            >
+              <SwiperSlide>
+               <>
+               <h1>Jr. Agropecas</h1>
+                <p>
+                  Somos Auto Jr. Agro Peças e o nosso negócio é vender peças
+                  agrícolas e prestar serviços de prensagem de mangueiras
+                  hidráulicas.
+                </p>
+               </>
+              </SwiperSlide>
+              <SwiperSlide>
+                <>
+                <h1>Jr. Agropecas</h1>
+                <p>
+                  Somos Auto Jr. Agro Peças e o nosso negócio é vender peças
+                  agrícolas e prestar serviços de prensagem de mangueiras
+                  hidráulicas.
+                </p>
+                </>        
+              </SwiperSlide>
+            </Swiper>
           </div>
           <div className={styles.containerApresetation__image}>
-        {/*   <Lottie 
+            {/*   <Lottie 
             options={defaultOptions}
               height={400}
               width={400}
@@ -210,28 +241,32 @@ const Home = () => {
         <div className={styles.linha_de_produtos}>
           <div className={styles.linha_de_produtos__text}>
             <p>Conheças nossa</p>
-            <h3>
-              Linha de produtos agrícolas
-            </h3>
-          </div>  
+            <h3>Linha de produtos agrícolas</h3>
+          </div>
         </div>
         <div className={styles.container_produtos}>
           {produtos.map((produto: any, key: any) => {
             return (
               <div className={styles.container_produtos__produto} key={key}>
-              <div className={styles.container_produtos__produto__image}>
-                <Image src={produto.imagem} width={200} height={200} alt="produto"/>
+                <div className={styles.container_produtos__produto__image}>
+                  <Image
+                    src={produto.imagem}
+                    width={200}
+                    height={200}
+                    alt="produto"
+                  />
+                </div>
+                <div className={styles.container_produtos__produto__text}>
+                  <h3>{produto.nome}</h3>
+                  <p>{produto.descricao}</p>
+                </div>
               </div>
-              <div className={styles.container_produtos__produto__text}>
-                <h3>{produto.nome}</h3>
-                <p>{produto.descricao}</p>
-              </div>
-            </div>)
+            );
           })}
         </div>
       </main>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

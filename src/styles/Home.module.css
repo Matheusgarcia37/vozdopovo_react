@@ -122,14 +122,6 @@
   }
 }
 
-.containerApresetation {
-  display: flex;
-  margin: 1rem 0;
-}
-
-.containerApresetation__text {
-  flex: 2;
-}
 
 .containerApresetation__text h1 {
   color: #090F41;
