@@ -215,7 +215,7 @@ const Home = () => {
               modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
               spaceBetween={50}
               slidesPerView={1}
-             /*  autoplay={{ delay: 2500, disableOnInteraction: false }}  */
+              autoplay={{ delay: 2500, disableOnInteraction: false }} 
               onSwiper={(swiper) => console.log(swiper)}
               onSlideChange={() => console.log("slide change")}
             >
