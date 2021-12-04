@@ -5,8 +5,8 @@ import styles from "../styles/Home.module.scss";
 
 import image1 from "../images/background_1.jpeg";
 import image2 from "../images/background_2.jpeg";
-/* import image3 from "../images/background_3.jpeg";
-import image4 from "../images/background_4.jpeg"; */
+import image3 from "../images/background_3.jpeg";
+import image4 from "../images/background_4.jpeg";
 
 import agricultura1 from "../lotties/agricultura1.json";
 // import Swiper core and required modules
@@ -263,7 +263,7 @@ const Home = () => {
                   </div>
                 </div>
               </SwiperSlide>
-              {/* <SwiperSlide>
+              <SwiperSlide>
                 <div className={styles.container_slide}>
                 <div className={styles.container_text_slide}>
                     <h1>Jr. Agropeças</h1>
@@ -306,7 +306,7 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
-              </SwiperSlide> */}
+              </SwiperSlide>
             </Swiper>
           </div>
           <div className={styles.containerApresetation__image}>
