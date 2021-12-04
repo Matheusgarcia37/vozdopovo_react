@@ -16,3 +16,14 @@ a {
 * {
   box-sizing: border-box;
 }
+
+:root {
+  --primary-color: #090F41;
+  --secondary-color: #ffb734;
+
+  --background-color: #fafafa;
+  --shadow-header: rgba(0, 0, 0, 0.2);
+  --hambuger-color: #222222;
+}
+
+

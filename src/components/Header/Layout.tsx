@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useState } from "react";
 import styles from "./styles.module.scss";
-import styles2 from '../../styles/Home.module.css'
+import styles2 from '../../styles/Home.module.scss'
 import Image from 'next/image'
 import logo from '../../assets/logo.png'
 import { AiOutlineHome, AiOutlineRead } from 'react-icons/ai'

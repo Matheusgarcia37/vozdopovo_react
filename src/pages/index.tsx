@@ -1,11 +1,23 @@
 import type { InferGetServerSidePropsType, NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import styles from "../styles/Home.module.css";
+import styles from "../styles/Home.module.scss";
+
+import image1 from "../images/imagem_1.jpeg";
+import image2 from "../images/imagem_2.jpeg";
+import image3 from "../images/imagem_3.jpeg";
+import image4 from "../images/imagem_4.jpeg";
 
 import agricultura1 from "../lotties/agricultura1.json";
 // import Swiper core and required modules
-import { Navigation, Pagination, Scrollbar, A11y, Autoplay, EffectCoverflow } from "swiper";
+import {
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+  Autoplay,
+  EffectCoverflow,
+} from "swiper";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -202,30 +214,98 @@ const Home = () => {
             <Swiper
               modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
               spaceBetween={50}
-              slidesPerView={1}  
-              autoplay= {{delay: 2500, disableOnInteraction: false}}
+              slidesPerView={1}
+             /*  autoplay={{ delay: 2500, disableOnInteraction: false }}  */
               onSwiper={(swiper) => console.log(swiper)}
               onSlideChange={() => console.log("slide change")}
             >
               <SwiperSlide>
-               <>
-               <h1>Jr. Agropecas</h1>
-                <p>
-                  Somos Auto Jr. Agro Peças e o nosso negócio é vender peças
-                  agrícolas e prestar serviços de prensagem de mangueiras
-                  hidráulicas.
-                </p>
-               </>
+                <div className={styles.container_slide}>
+                  <div className={styles.container_text_slide}>
+                    <h1>Jr. Agropeças</h1>
+                    <p>
+                      Somos Auto Jr. Agro Peças e o nosso negócio é vender peças
+                      agrícolas e prestar serviços de prensagem de mangueiras
+                      hidráulicas.
+                    </p>
+                  </div>
+                  <div className={styles.imagem_container_slide}>
+                    <div className={styles.image_mask}></div>
+                    <div className={styles.content_image}>
+                      <Image
+                        alt="image_ilustration"
+                        src={image1}
+                        layout="fill"
+                      />
+                    </div>
+                  </div>
+                </div>
               </SwiperSlide>
               <SwiperSlide>
-                <>
-                <h1>Jr. Agropecas</h1>
-                <p>
-                  Somos Auto Jr. Agro Peças e o nosso negócio é vender peças
-                  agrícolas e prestar serviços de prensagem de mangueiras
-                  hidráulicas.
-                </p>
-                </>        
+                <div className={styles.container_slide}>
+                <div className={styles.container_text_slide}>
+                    <h1>Jr. Agropeças</h1>
+                    <p>
+                      Somos Auto Jr. Agro Peças e o nosso negócio é vender peças
+                      agrícolas e prestar serviços de prensagem de mangueiras
+                      hidráulicas.
+                    </p>
+                  </div>
+                  <div className={styles.imagem_container_slide}>
+                    <div className={styles.image_mask}></div>
+                    <div className={styles.content_image}>
+                      <Image
+                        alt="image_ilustration"
+                        src={image2}
+                        layout="fill"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className={styles.container_slide}>
+                <div className={styles.container_text_slide}>
+                    <h1>Jr. Agropeças</h1>
+                    <p>
+                      Somos Auto Jr. Agro Peças e o nosso negócio é vender peças
+                      agrícolas e prestar serviços de prensagem de mangueiras
+                      hidráulicas.
+                    </p>
+                  </div>
+                  <div className={styles.imagem_container_slide}>
+                    <div className={styles.image_mask}></div>
+                    <div className={styles.content_image}>
+                      <Image
+                        alt="image_ilustration"
+                        src={image3}
+                        layout="fill"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className={styles.container_slide}>
+                <div className={styles.container_text_slide}>
+                    <h1>Jr. Agropeças</h1>
+                    <p>
+                      Somos Auto Jr. Agro Peças e o nosso negócio é vender peças
+                      agrícolas e prestar serviços de prensagem de mangueiras
+                      hidráulicas.
+                    </p>
+                  </div>
+                  <div className={styles.imagem_container_slide}>
+                    <div className={styles.image_mask}></div>
+                    <div className={styles.content_image}>
+                      <Image
+                        alt="image_ilustration"
+                        src={image4}
+                        layout="fill"
+                      />
+                    </div>
+                  </div>
+                </div>
               </SwiperSlide>
             </Swiper>
           </div>
