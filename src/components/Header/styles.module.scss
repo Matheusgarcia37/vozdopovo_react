@@ -149,11 +149,11 @@
     justify-content: center;
     background-color: var(--secondary-color);
     color: var(--primary-color);
-    width: 100%;
+    width: 250px;
     height: 50px;
     display: flex!important;
     position: fixed;
-    bottom: 180px;
+    bottom: -20px;
     .link_social {
         margin: 0 0.5rem;
         :hover {
