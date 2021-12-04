@@ -3,10 +3,10 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.scss";
 
-import image1 from "../images/imagem_1.jpeg";
-import image2 from "../images/imagem_2.jpeg";
-import image3 from "../images/imagem_3.jpeg";
-import image4 from "../images/imagem_4.jpeg";
+import image1 from "../images/imagem1.jpeg";
+import image2 from "../images/imagem2.jpeg";
+import image3 from "../images/imagem3.jpeg";
+import image4 from "../images/imagem4.jpeg";
 
 import agricultura1 from "../lotties/agricultura1.json";
 // import Swiper core and required modules
