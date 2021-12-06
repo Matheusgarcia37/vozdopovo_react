@@ -235,8 +235,7 @@ const Home = () => {
                       <Image
                         alt="image_ilustration"
                         src={image1}
-                        layout="intrinsic"
-                        priority={true}
+                        layout="fill"
                       />
                     </div>
                   </div>
@@ -258,8 +257,7 @@ const Home = () => {
                       <Image
                         alt="image_ilustration"
                         src={image2}
-                        layout="intrinsic"
-                        priority={true}
+                        layout="fill"
                       />
                     </div>
                   </div>
@@ -281,8 +279,7 @@ const Home = () => {
                       <Image
                         alt="image_ilustration"
                         src={image3}
-                        layout="intrinsic"
-                        priority={true}
+                        layout="fill"
                       />
                     </div>
                   </div>
@@ -304,8 +301,7 @@ const Home = () => {
                       <Image
                         alt="image_ilustration"
                         src={image4}
-                        layout="intrinsic"
-                        priority={true}
+                        layout="fill"
                       />
                     </div>
                   </div>
