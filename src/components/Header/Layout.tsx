@@ -4,6 +4,7 @@ import styles from "./styles.module.scss";
 import styles2 from "../../styles/Home.module.scss";
 import Image from "next/image";
 import logo from "../../assets/logo.png";
+import logoFundoBranco from "../../images/logoFundoBranco.jpeg";
 import {
   AiOutlineHome,
   AiOutlineRead,
@@ -13,7 +14,10 @@ import {
   AiOutlinePhone,
   AiOutlineMail,
   AiOutlineBook,
+  AiOutlineWhatsApp,
+  AiFillPhone,
 } from "react-icons/ai";
+import { MdEmail } from "react-icons/md";
 import { BiShoppingBag } from "react-icons/bi";
 import { FaUserFriends } from "react-icons/fa";
 import { IoMdContact } from "react-icons/io";
@@ -211,9 +215,91 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <div className={styles.whatsapp}>
         <Lottie options={defaultOptions} height={60} width={60} />
       </div>
-      <div className={styles2.container} style={{ display: "none" }}>
-        <footer className={styles.footer}></footer>
-      </div>
+
+      {
+        <div>
+          <footer className={styles.footer}>
+            <div className={styles.NavInformations}>
+              <div className={styles.NavInformationItem}>
+                <h3>Navegue</h3>
+                <ul>
+                  <li>
+                    <Link href="/">
+                      <a>Home</a>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/produtos">
+                      <a>Produtos</a>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/sobre">
+                      <a>Sobre</a>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/representantes">
+                      <a>Representantes</a>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/catalogo">
+                      <a>Catálogo</a>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/contato">
+                      <a>Contato</a>
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+              <div className={styles.NavInformationItem}>
+                <h3>Categorias</h3>
+              </div>
+              <div className={styles.NavInformationItem}>
+                <h3>Atendimentos</h3>
+                <ul>
+                  <li className={styles.telefoneFooter}>
+                    <AiFillPhone style={{marginRight: ".4rem"}}/> 37 3458 0136
+                  </li>
+                  <li className={styles.telefoneFooter}>
+                    <AiFillPhone style={{marginRight: ".4rem"}}/> 37 99857 5436
+                  </li>
+                  <li className={styles.emailFooter}>
+                    <MdEmail size={22.5} style={{marginRight: ".4rem"}}/>
+                     autojragropecas@gmail.com
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className={styles.SocialInformations}>
+              <div className={styles.SocialInformationsItem}>
+                <div className={styles.imageFooter}>
+                  <Image src={logoFundoBranco} alt="logo footer" layout="responsive" />
+                </div> 
+              </div>
+              <div className={styles.SocialInformationsItem}>
+                <p>Redes Sociais</p>
+                <div className={styles.containerIcons}>
+                  <a href="#"><AiOutlineFacebook size={30} /></a>
+                  <a href="#"><AiOutlineInstagram size={30} /></a>
+                  <a href="#"><AiOutlineWhatsApp size={30} /></a>
+                </div>
+              </div>
+            </div>
+            <div className={styles.ReservedRights}>
+              <div>
+                <p>
+                  © 2021 - <strong>Jr. Agropeças</strong> Todos os direitos
+                  reservados.
+                </p>
+              </div>
+            </div>
+          </footer>
+        </div>
+      }
     </>
   );
 }
