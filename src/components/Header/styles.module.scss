@@ -262,16 +262,20 @@
     justify-content: space-evenly;
     width: 100%;
 
+    @media screen and (max-width: 930px) {
+      flex-direction: column;
+    }
+
     .NavInformationItem {
       flex: 1;
       display: flex;
       flex-direction: column;
       text-align: center;
       h3 {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
         font-family: 'Poppins', sans-serif;
         font-weight: 750;
-        margin-bottom: 1rem;
+        margin-bottom: .5rem;
       }
       ul {
         color: white;
@@ -279,8 +283,8 @@
         list-style: none;
         text-align: center;
         li {
-          margin: .8rem 0;
-          font-size: 1.1rem;
+          margin: .7rem 0;
+          font-size: .9rem;
 
           :hover {
             color: #f3bc55;
@@ -293,7 +297,7 @@
           align-items: center;
           text-align: center;
           justify-content: center;
-          font-size: 1.15rem;
+          font-size: 1.1rem;
           font-weight: 800;
         }
         .emailFooter{
@@ -301,20 +305,25 @@
           display: flex;
           align-items: center;
           margin-top: 3rem;
-          font-size: 1.1rem;
+          font-size: .9rem;
         }
       }
     }
   }
 
   .SocialInformations {
-    border-top: 1px solid rgb(24, 35, 51);
-    border-bottom: 1px solid rgb(24, 35, 51);
+    border-top: 1px solid rgb(56, 57, 58);
+    border-bottom: 1px solid rgb(56, 57, 58);
     padding: 1rem 0;
     max-width: 1920px;
     display: flex;
     justify-content: space-evenly;
     width: 100%;
+
+    @media screen and (max-width: 930px) {
+      flex-direction: column;
+    }
+
 
     .SocialInformationsItem {
       color: white;
@@ -337,11 +346,11 @@
         }
       }
       p {
-        font-size: 1.1rem;
+        font-size: 1rem;
         font-family: 'Poppins', sans-serif;
       }
       .imageFooter {
-        width: 220px;
+        width: 150px;
         background-color: white;
         padding: 20px;
         border-radius: 25px;
@@ -352,6 +361,9 @@
   
   .ReservedRights {
     color: white;
-    font-size: 1.05rem;
+    font-size: .9rem;
+    @media screen and (max-width: 930px) {
+      font-size: .7rem;
+    }
   }
 }
