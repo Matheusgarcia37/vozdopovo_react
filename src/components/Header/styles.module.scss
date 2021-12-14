@@ -249,6 +249,7 @@
 }
 
 .footer {
+  bottom: 0;
   font-family: 'Poppins', sans-serif;
   background-color: var(--primary-color);
   color: #f3bc55;
@@ -256,6 +257,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
   .NavInformations {
     max-width: 1920px;
     display: flex;
