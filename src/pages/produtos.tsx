@@ -190,9 +190,9 @@ const Produtos = () => {
         </div>
         
         <div className={styles.contentProdutos}>
-          {produtos.map((produto) => {
+          {produtos.map((produto, key) => {
             return (
-              <div className={styles.contentProduto}>
+              <div className={styles.contentProduto} key={key}>
                 <div className={styles.imageProduto}>
                   <Image
                     src={produto.imagem}
