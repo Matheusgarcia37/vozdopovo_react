@@ -5,10 +5,28 @@
     max-width: 1920px;
     width: 100%;
     padding: 0 2rem;
+    ul {
+        list-style: none;
+        padding: 0;
+        li {
+            cursor: pointer;
+            padding: .3rem 0rem;
+            opacity: .8;
+            font-size: .9rem;
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
 }
 
 .filtroInfo {
     padding-right: 4rem;
+    p {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #000
+    }
 }
 
 .headerProduto {
@@ -58,6 +76,7 @@
         flex-wrap: wrap;
         .contentProduto {
             margin: .5rem 1rem;
+            width: calc(33% - 2rem);
         }
     }
 }
@@ -65,4 +84,9 @@
 
 .filtroPorRelevancia {
     padding-left: 4rem;
+    p {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #000;
+    }
 }
