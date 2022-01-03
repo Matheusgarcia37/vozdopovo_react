@@ -1,6 +1,7 @@
 import styles from "../styles/Produtos.module.scss";
 import Image from "next/image";
 import { AiOutlineSearch } from "react-icons/ai";
+import Select from 'react-select'
 
 const Produtos = () => {
   type Data = {
@@ -159,6 +160,23 @@ const Produtos = () => {
       imagem: "https://via.placeholder.com/300x300",
     },
   ];
+  const optionsRelevancia = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' }
+  ]
+
+  const optionsModelo = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' }
+  ]
+
+  const optionsCategoria = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' }
+  ]
 
   return (
     <div className={styles.container}>
@@ -179,16 +197,23 @@ const Produtos = () => {
           </ul>
         </div>
       </div>
-      
+
       <div className={styles.containerProdutos}>
         <div className={styles.headerProduto}>
           <h3>Foi encontrado {produtos.length} resultados</h3>
           <div className={styles.filtroPorPesquisa}>
-            <input type="text" placeholder="Pesquisar produtos" className={styles.inputPesquisa}/>
-            <div className={styles.caixaIconePesquisa}><AiOutlineSearch/></div>
+            <input type="text" placeholder="Pesquisar produtos" className={styles.inputPesquisa} />
+            <div className={styles.caixaIconePesquisa}><AiOutlineSearch /></div>
+          </div>
+          <div className={styles.selectsFilterMobile}>
+            <div className={styles.selectfilterMovile}><Select options={optionsCategoria} /></div>
+            <div className={styles.selectfilterMovile}><Select options={optionsModelo} /></div>
+            <div className={styles.selectfilterMovile}><Select options={optionsRelevancia} /></div>
+           
+           
           </div>
         </div>
-        
+
         <div className={styles.contentProdutos}>
           {produtos.map((produto, key) => {
             return (
