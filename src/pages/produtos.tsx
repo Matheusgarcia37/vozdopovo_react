@@ -207,8 +207,8 @@ const Produtos = () => {
           </div>
           <div className={styles.selectsFilterMobile}>
             <div className={styles.selectfilterMovile}><Select options={optionsCategoria} /></div>
-            <div className={styles.selectfilterMovile}><Select options={optionsModelo} /></div>
-            <div className={styles.selectfilterMovile}><Select options={optionsRelevancia} /></div>
+            <div className={styles.selectfilterMovile}><Select options={optionsModelo}/></div>
+            <div className={styles.selectfilterMovile}><Select options={optionsRelevancia}/></div>
            
            
           </div>

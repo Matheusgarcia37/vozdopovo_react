@@ -1,0 +1,105 @@
+.container {
+    display: flex;
+    justify-content: center;
+    max-width: 1920px;
+    margin: 1rem auto;
+    height: 80vh;
+    // box shadow
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    .logoImagem {
+        padding: 1rem;
+        background-color: white;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+    }
+    .illustration {
+        display: flex;
+        justify-content: center;
+        align-items: center;        
+        width: 100%;
+        background-color: white;
+    }
+    .boxLogin {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 2rem;
+
+        .floatLabel {
+            display: flex;
+            flex-direction: column;
+            min-width: 350px;
+            position: relative;
+            margin-bottom: 1rem;
+
+            input {
+                width: 100%;
+                height: 56px;
+                padding: 14px 16px 0 10px;
+                outline: 0;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                background: #fff;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 16px;
+            }
+
+            label {
+                font-size: 16px;
+                font-family: Arial, Helvetica, sans-serif;
+                padding: 0 12px;
+                color: #999;
+                pointer-events: none;
+
+                position: absolute;
+                transform: translate(0, 26px) scale(1);
+                transition: all 0.3s ease;
+            }
+           
+        }
+        .floatLabel:focus-within label {
+            transform: translate(0, 5px) scale(0.75);
+            padding-left: .1rem;
+        }
+        .label_active {
+            label {
+                transform: translate(0, 5px) scale(0.75);
+                padding-left: .1rem;
+            }
+        }
+
+        .buttonEnter {
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+
+            background-color: var(--primary-color);
+            border-radius: 4px;
+            border: none;
+            color: white;
+            font-size: 16px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .buttonEnter:hover {
+            color: var(--secondary-color);
+        }
+    }
+
+    @media (max-width: 1050px) {
+    .illustration {
+            display: none;
+        }
+    }
+    .boxLogin {
+        .floatLabel {
+            min-width: max-content;
+            input {
+                width: 100%;
+            }
+        }
+    }
+}
