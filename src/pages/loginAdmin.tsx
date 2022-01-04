@@ -4,7 +4,7 @@ import loginLottie from '../lotties/login.json'
 import styles from "../styles/LoginAdmin.module.scss";
 import Image from 'next/image';
 import logo from '../images/logoFundoBranco.jpeg';
-export default function loginAdmin() {
+export default function LoginAdmin() {
     const defaultOptions = {
         loop: true,
         autoplay: true,
