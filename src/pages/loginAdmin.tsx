@@ -1,10 +1,13 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useContext, useState } from 'react';
 import Lottie from 'react-lottie';
 import loginLottie from '../lotties/login.json'
 import styles from "../styles/LoginAdmin.module.scss";
 import Image from 'next/image';
 import logo from '../images/logoFundoBranco.jpeg';
+import { AuthContext } from '../contexts/AuthContext';
 export default function LoginAdmin() {
+    const { signIn } = useContext(AuthContext);
+
     const defaultOptions = {
         loop: true,
         autoplay: true,
@@ -23,6 +26,16 @@ export default function LoginAdmin() {
         const newformLogin: any = { ...formLogin };
         newformLogin[e.target.name] = e.target.value;
         setFormLogin(newformLogin);
+    }
+
+    const handleSubmit = async (e: any) => {
+        e.preventDefault();
+        const { user, password } = formLogin;
+        try {
+           await signIn({username: user, password});
+        } catch (error: any) {
+            console.log(error.response.data.error);
+        }
     }
 
     return (
@@ -57,7 +70,7 @@ export default function LoginAdmin() {
                                 </label>
                             </div>
                         </div>
-                        <button type="submit" className={styles.buttonEnter}>Entrar</button>
+                        <button type="submit" className={styles.buttonEnter} onClick={handleSubmit}>Entrar</button>
                     </form>
                 </div>
             </div>

@@ -10,8 +10,10 @@
   "dependencies": {
     "axios": "^0.24.0",
     "next": "12.0.4",
+    "nookies": "^2.5.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-hook-form": "^7.22.5",
     "react-icons": "^4.3.1",
     "react-lottie": "^1.2.3",
     "react-select": "^5.2.1",
@@ -20,6 +22,7 @@
     "swiper": "^7.3.1"
   },
   "devDependencies": {
+    "@types/cookie": "^0.4.1",
     "@types/node": "16.11.9",
     "@types/react": "17.0.35",
     "@types/react-lottie": "^1.2.6",
