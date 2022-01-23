@@ -377,6 +377,7 @@
   height: 100vh;
   width: 100vw;
   .menuAdmin {
+    position: fixed;
     .welcomeUser {
       width: 100%;
       span {
@@ -430,6 +431,7 @@
     }
   }
   .contentAdmin {
+    margin-left: 200px;
     flex: 4;
   }
 }
