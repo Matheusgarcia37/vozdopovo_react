@@ -2,7 +2,11 @@ import styles from "../styles/Produtos.module.scss";
 import Image from "next/image";
 import { AiOutlineSearch } from "react-icons/ai";
 import Select from 'react-select'
-
+import { useEffect, useState } from "react";
+import api, { Api } from "../api";
+import { GetServerSideProps } from "next";
+import ReactLoading from 'react-loading';
+import { MdArrowBack, MdArrowForward } from 'react-icons/md';
 const Produtos = () => {
   type Data = {
     nome: string;
@@ -11,155 +15,27 @@ const Produtos = () => {
     preco: number;
     imagem: string;
   };
-  const produtos: Data[] = [
-    {
-      nome: "Produto 1",
-      descricao: "Descrição do produto 1",
-      codigo: "1",
-      preco: 100,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 2",
-      descricao: "Descrição do produto 2",
-      codigo: "2",
-      preco: 200,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 3",
-      descricao: "Descrição do produto 3",
-      codigo: "3",
-      preco: 300,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 4",
-      descricao: "Descrição do produto 4",
-      codigo: "4",
-      preco: 400,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 5",
-      descricao: "Descrição do produto 5",
-      codigo: "5",
-      preco: 500,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 6",
-      descricao: "Descrição do produto 6",
-      codigo: "6",
-      preco: 600,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 7",
-      descricao: "Descrição do produto 7",
-      codigo: "7",
-      preco: 700,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 8",
-      descricao: "Descrição do produto 8",
-      codigo: "8",
-      preco: 800,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 9",
-      descricao: "Descrição do produto 9",
-      codigo: "9",
-      preco: 900,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 10",
-      descricao: "Descrição do produto 10",
-      codigo: "10",
-      preco: 1000,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 1",
-      descricao: "Descrição do produto 1",
-      codigo: "1",
-      preco: 100,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 2",
-      descricao: "Descrição do produto 2",
-      codigo: "2",
-      preco: 200,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 3",
-      descricao: "Descrição do produto 3",
-      codigo: "3",
-      preco: 300,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 4",
-      descricao: "Descrição do produto 4",
-      codigo: "4",
-      preco: 400,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 5",
-      descricao: "Descrição do produto 5",
-      codigo: "5",
-      preco: 500,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 6",
-      descricao: "Descrição do produto 6",
-      codigo: "6",
-      preco: 600,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 7",
-      descricao: "Descrição do produto 7",
-      codigo: "7",
-      preco: 700,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 8",
-      descricao: "Descrição do produto 8",
-      codigo: "8",
-      preco: 800,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 9",
-      descricao: "Descrição do produto 9",
-      codigo: "9",
-      preco: 900,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 10",
-      descricao: "Descrição do produto 10",
-      codigo: "10",
-      preco: 1000,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 10",
-      descricao: "Descrição do produto 10",
-      codigo: "10",
-      preco: 1000,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-  ];
+
+  const [done, setDone] = useState(false);
+
+  const [produtos, setProdutos] = useState<Data[] | []>([]);
+
+  const MAX_ITEMS = 9;
+  const MAX_LEFT = (MAX_ITEMS - 1) / 2;
+  const limit = 100;
+  const [offset, setOffset] = useState(0);
+
+
+  const pages = Math.ceil(produtos.length / limit);
+
+  const current = offset ? (offset / limit) + 1 : 1;
+
+  const firstPage = Math.max(current - MAX_LEFT, 1);
+
+  const currentItens = produtos.slice(offset, offset + limit);
+
+
+
   const optionsRelevancia = [
     { value: 'chocolate', label: 'Chocolate' },
     { value: 'strawberry', label: 'Strawberry' },
@@ -178,6 +54,18 @@ const Produtos = () => {
     { value: 'vanilla', label: 'Vanilla' }
   ]
 
+  useEffect(() => {
+    const getProducts = async () => {
+      const { data } = await api.get('/produto');
+      setProdutos(data);
+      setDone(true);
+    }
+    getProducts();
+  }, [])
+
+  const changePage = (page: any) => {
+    setOffset((page - 1) * limit)
+  }
   return (
     <div className={styles.container}>
       <div className={styles.filtroInfo}>
@@ -207,33 +95,81 @@ const Produtos = () => {
           </div>
           <div className={styles.selectsFilterMobile}>
             <div className={styles.selectfilterMovile}><Select options={optionsCategoria} /></div>
-            <div className={styles.selectfilterMovile}><Select options={optionsModelo}/></div>
-            <div className={styles.selectfilterMovile}><Select options={optionsRelevancia}/></div>
-           
-           
+            <div className={styles.selectfilterMovile}><Select options={optionsModelo} /></div>
+            <div className={styles.selectfilterMovile}><Select options={optionsRelevancia} /></div>
+
+
           </div>
         </div>
 
-        <div className={styles.contentProdutos}>
-          {produtos.map((produto, key) => {
-            return (
-              <div className={styles.contentProduto} key={key}>
-                <div className={styles.imageProduto}>
-                  <Image
-                    src={produto.imagem}
-                    width={200}
-                    height={200}
-                    alt="produto"
-                  />
-                </div>
-                <div className={styles.informationsProduto}>
-                  <h3>{produto.nome}</h3>
-                  <p>{produto.descricao}</p>
-                </div>
+        {
+          done ?
+            <div className={styles.boxProdutos}>
+              <div className={styles.pagination}>
+                <button className={styles.ant_next} onClick={() => changePage(current - 1)} disabled={current == 1}>
+                  <MdArrowBack></MdArrowBack>
+                </button>
+                {Array.from(Array(Math.min(MAX_ITEMS, pages)), (_, index) => {
+                  return index + firstPage;
+                }).map((page: any, key) => {
+                  if (page <= pages) {
+                    return (
+                      (
+                        <button key={key} onClick={() => {
+                          changePage(page);
+                        }} className={page === current ? styles.active_pagination + ' ' + styles.pagination_pagina : styles.pagination_pagina}>{page}</button>
+                      )
+                    )
+                  }
+                })}
+                <button className={styles.ant_next} disabled={current == pages} onClick={() => changePage(current + 1)}>
+                  <MdArrowForward></MdArrowForward>
+                </button>
               </div>
-            );
-          })}
-        </div>
+              <div className={styles.contentProdutos}>
+                {currentItens.map((produto, key) => {
+                  return (
+                    <div className={styles.contentProduto} key={key}>
+                      <div className={styles.imageProduto}>
+                        <Image
+                          src={produto.imagem || "https://via.placeholder.com/300x300"}
+                          width={200}
+                          height={200}
+                          alt="produto"
+                        />
+                      </div>
+                      <div className={styles.informationsProduto}>
+                        <p>{produto.descricao || 'Produto sem nome'}</p>
+                        {/* <p>{produto.descricao}</p> */}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className={styles.pagination}>
+                <button className={styles.ant_next} onClick={() => changePage(current - 1)} disabled={current == 1}>
+                  <MdArrowBack></MdArrowBack>
+                </button>
+                {Array.from(Array(Math.min(MAX_ITEMS, pages)), (_, index) => {
+                  return index + firstPage;
+                }).map((page: any, key) => {
+                  if (page <= pages) {
+                    return (
+                      (
+                        <button key={key} onClick={() => {
+                          changePage(page);
+                        }} className={page === current ? styles.active_pagination + ' ' + styles.pagination_pagina : styles.pagination_pagina}>{page}</button>
+                      )
+                    )
+                  }
+                })}
+                <button className={styles.ant_next} disabled={current == pages} onClick={() => changePage(current + 1)}>
+                  <MdArrowForward></MdArrowForward>
+                </button>
+              </div>
+            </div>
+            : <div className={styles.loader}><ReactLoading type={"spin"} color={"#000"} height={250} width={250} /></div>
+        }
       </div>
 
       <div className={styles.filtroPorRelevancia}>
@@ -248,5 +184,15 @@ const Produtos = () => {
     </div>
   );
 };
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  return {
+    props: {
+
+    }
+  }
+}
+
+
 
 export default Produtos;

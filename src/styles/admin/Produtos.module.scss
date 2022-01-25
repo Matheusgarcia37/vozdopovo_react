@@ -68,3 +68,50 @@
     }
     
 }
+
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0;
+    .pagination_pagina {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 0.2rem;
+        width: 2rem;
+        margin: .2rem .4rem;
+        font-size: .85rem;
+        cursor: pointer;
+        transition: 0.2s;
+        &:hover {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+        }
+    }
+}
+.active_pagination {
+    background-color: var(--secondary-color)!important;
+    color: var(--primary-color)!important;
+}
+
+.ant_next {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 0.2rem;
+    margin: .2rem .4rem;
+    font-size: .78rem;
+    cursor: pointer;
+    transition: 0.2s;
+    &:hover {
+        background-color: var(--secondary-color);
+        color: var(--primary-color);
+    }
+
+    &:disabled {
+        opacity: .5;
+        cursor: default;
+    }
+}

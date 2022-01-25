@@ -36,155 +36,7 @@ type Data = {
 };
 
 const Home = () => {
-  const produtos: Data[] = [
-    {
-      nome: "Produto 1",
-      descricao: "Descrição do produto 1",
-      codigo: "1",
-      preco: 100,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 2",
-      descricao: "Descrição do produto 2",
-      codigo: "2",
-      preco: 200,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 3",
-      descricao: "Descrição do produto 3",
-      codigo: "3",
-      preco: 300,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 4",
-      descricao: "Descrição do produto 4",
-      codigo: "4",
-      preco: 400,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 5",
-      descricao: "Descrição do produto 5",
-      codigo: "5",
-      preco: 500,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 6",
-      descricao: "Descrição do produto 6",
-      codigo: "6",
-      preco: 600,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 7",
-      descricao: "Descrição do produto 7",
-      codigo: "7",
-      preco: 700,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 8",
-      descricao: "Descrição do produto 8",
-      codigo: "8",
-      preco: 800,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 9",
-      descricao: "Descrição do produto 9",
-      codigo: "9",
-      preco: 900,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 10",
-      descricao: "Descrição do produto 10",
-      codigo: "10",
-      preco: 1000,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 1",
-      descricao: "Descrição do produto 1",
-      codigo: "1",
-      preco: 100,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 2",
-      descricao: "Descrição do produto 2",
-      codigo: "2",
-      preco: 200,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 3",
-      descricao: "Descrição do produto 3",
-      codigo: "3",
-      preco: 300,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 4",
-      descricao: "Descrição do produto 4",
-      codigo: "4",
-      preco: 400,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 5",
-      descricao: "Descrição do produto 5",
-      codigo: "5",
-      preco: 500,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 6",
-      descricao: "Descrição do produto 6",
-      codigo: "6",
-      preco: 600,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 7",
-      descricao: "Descrição do produto 7",
-      codigo: "7",
-      preco: 700,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 8",
-      descricao: "Descrição do produto 8",
-      codigo: "8",
-      preco: 800,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 9",
-      descricao: "Descrição do produto 9",
-      codigo: "9",
-      preco: 900,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 10",
-      descricao: "Descrição do produto 10",
-      codigo: "10",
-      preco: 1000,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-    {
-      nome: "Produto 10",
-      descricao: "Descrição do produto 10",
-      codigo: "10",
-      preco: 1000,
-      imagem: "https://via.placeholder.com/300x300",
-    },
-  ];
+  const produtos: any = [];
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -215,7 +67,7 @@ const Home = () => {
               modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
               spaceBetween={50}
               slidesPerView={1}
-              autoplay={{ delay: 2500, disableOnInteraction: false }} 
+              autoplay={{ delay: 2500, disableOnInteraction: false }}
               onSwiper={(swiper) => console.log(swiper)}
               onSlideChange={() => console.log("slide change")}
             >
@@ -243,7 +95,7 @@ const Home = () => {
               </SwiperSlide>
               <SwiperSlide>
                 <div className={styles.container_slide}>
-                <div className={styles.container_text_slide}>
+                  <div className={styles.container_text_slide}>
                     <h1>Jr. Agropeças</h1>
                     <p>
                       Somos Auto Jr. Agro Peças e o nosso negócio é vender peças
@@ -265,7 +117,7 @@ const Home = () => {
               </SwiperSlide>
               <SwiperSlide>
                 <div className={styles.container_slide}>
-                <div className={styles.container_text_slide}>
+                  <div className={styles.container_text_slide}>
                     <h1>Jr. Agropeças</h1>
                     <p>
                       Somos Auto Jr. Agro Peças e o nosso negócio é vender peças
@@ -287,7 +139,7 @@ const Home = () => {
               </SwiperSlide>
               <SwiperSlide>
                 <div className={styles.container_slide}>
-                <div className={styles.container_text_slide}>
+                  <div className={styles.container_text_slide}>
                     <h1>Jr. Agropeças</h1>
                     <p>
                       Somos Auto Jr. Agro Peças e o nosso negócio é vender peças

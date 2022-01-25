@@ -34,7 +34,9 @@ export default function LoginAdmin() {
         try {
            await signIn({username: user, password});
         } catch (error: any) {
-            console.log(error.response.data.error);
+            if(error.response){
+                console.log(error.response.data.error);
+            }   
         }
     }
 

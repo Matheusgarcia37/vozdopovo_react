@@ -9,6 +9,7 @@ import styles from '../../../styles/admin/Produtos.module.scss';
 import { FaEdit } from "react-icons/fa";
 import { RiDeleteBinFill } from "react-icons/ri";
 import * as XLSX from 'xlsx';
+import { MdArrowBack, MdArrowForward } from "react-icons/md";
 type Produtos = [
     {
         id: string;
@@ -24,6 +25,26 @@ type Produtos = [
 ]
 export default function Produtos() {
     const [produtos, setProdutos] = useState<Produtos | []>([]);
+
+    const MAX_ITEMS = 9;
+    const MAX_LEFT = (MAX_ITEMS - 1) / 2;
+    const limit = 100;
+    const [offset, setOffset] = useState(0);
+  
+  
+    const pages = Math.ceil(produtos.length / limit);
+  
+    const current = offset ? (offset / limit) + 1 : 1;
+  
+    const firstPage = Math.max(current - MAX_LEFT, 1);
+  
+    const currentItens = produtos.slice(offset, offset + limit);
+    
+    
+  const changePage = (page: any) => {
+    setOffset((page - 1) * limit)
+  }
+   
     useEffect(() => {
         const getProdutos = async () => {
             const { data } = await api.get('/produto');;
@@ -32,15 +53,15 @@ export default function Produtos() {
         getProdutos();
     }, []);
 
-    const deleteUser = async (e: any, id: string) => {
-        // e.preventDefault();
-        // try {
-        //     await api.delete(`/user`, {data: {id}});
-        //     const newUsers: any = produtos.filter((produto) => produto.id !== id);
-        //     setProdutos(newUsers);
-        // } catch (error) {
-        //     console.log(error)
-        // }
+    const deleteProduto = async (e: any, id: string) => {
+        e.preventDefault();
+        try {
+            await api.delete(`/produto`, {data: {id}});
+            const newProdutos: any = produtos.filter((produto) => produto.id !== id);
+            setProdutos(newProdutos);
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const readExel= async (file: any) => {   
@@ -109,6 +130,27 @@ export default function Produtos() {
                 </Link>
                 </div>
             </div>
+            <div className={styles.pagination}>
+                <button className={styles.ant_next} onClick={() => changePage(current - 1)} disabled={current == 1}>
+                  <MdArrowBack></MdArrowBack>
+                </button>
+                {Array.from(Array(Math.min(MAX_ITEMS, pages)), (_, index) => {
+                  return index + firstPage;
+                }).map((page: any, key) => {
+                  if (page <= pages) {
+                    return (
+                      (
+                        <button key={key} onClick={() => {
+                          changePage(page);
+                        }} className={page === current ? styles.active_pagination + ' ' + styles.pagination_pagina : styles.pagination_pagina}>{page}</button>
+                      )
+                    )
+                  }
+                })}
+                <button className={styles.ant_next} disabled={current == pages} onClick={() => changePage(current + 1)}>
+                  <MdArrowForward></MdArrowForward>
+                </button>
+              </div>
             <div className={styles.containerTableProdutos}><table className={styles.tableProdutos}>
                 <thead className={styles.headerTableProdutos}>
                     <tr>
@@ -124,10 +166,10 @@ export default function Produtos() {
                     </tr>
                 </thead>
                 <tbody className={styles.bodyTableProdutos}>
-                    {produtos.map((produto, key) => (
+                    {currentItens.map((produto, key) => (
                         <tr key={key} className={styles.contentTableProdutos}>
                             <td>{produto.codigo_interno}</td>
-                            <td>{produto.descricao}</td>
+                            <td>{produto.descricao || "Produto sem nome"}</td>
                             <td>{produto.codigo_referencia}</td>
                             <td>{produto.aplicacao}</td>
                             <td>{produto.marca}</td>
@@ -144,7 +186,7 @@ export default function Produtos() {
 
                             </td>
                             <td>
-                                <RiDeleteBinFill onClick={(e) => deleteUser(e, produto.id)} size={22} className={styles.iconButton}></RiDeleteBinFill>
+                                <RiDeleteBinFill onClick={(e) => deleteProduto(e, produto.id)} size={22} className={styles.iconButton}></RiDeleteBinFill>
                             </td>
                         </tr>
                     ))}

@@ -76,12 +76,25 @@
         justify-content: center;
         flex-wrap: wrap;
         .contentProduto {
+            cursor: pointer;
             max-width: 143px;
-            margin: 0.6rem auto;
+            height: 300px;
+            margin: 0.6rem 0.6rem;
             background-color: #fafafa;
             padding: 0.4rem;
             box-shadow: 0 0px 5px rgba(0, 0, 0, 0.1);
             transition: all 0.2s ease;
+            box-shadow: 0 10px 27px rgba(0, 0, 0, 0.1);
+            &:hover {
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.2);
+            }
+            overflow: hidden;
+      
+            p {
+                width: 100%;
+                font-size: 1rem;
+                font-weight: 500;
+            }
         }
     }
 }
@@ -100,6 +113,60 @@
     display: none;
 }
 
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0;
+    .pagination_pagina {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 0.2rem;
+        width: 2rem;
+        margin: .2rem .4rem;
+        font-size: .85rem;
+        cursor: pointer;
+        transition: 0.2s;
+        &:hover {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+        }
+    }
+}
+.active_pagination {
+    background-color: var(--secondary-color)!important;
+    color: var(--primary-color)!important;
+}
+
+.ant_next {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 0.2rem;
+    margin: .2rem .4rem;
+    font-size: .78rem;
+    cursor: pointer;
+    transition: 0.2s;
+    &:hover {
+        background-color: var(--secondary-color);
+        color: var(--primary-color);
+    }
+
+    &:disabled {
+        opacity: .5;
+        cursor: default;
+    }
+}
+
+.loader {
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 // media max-width: 1050px
 @media (max-width: 1050px) {
    .filtroInfo {
@@ -115,7 +182,7 @@
       width: 100%;
       margin: 0;
       text-align: start;
-      h3 {
+      p {
           width: 100%;
           font-size: 1rem;
           margin: .8rem;
@@ -146,5 +213,29 @@
             margin: .5rem 0;
         }
       }
+    }
+
+    .containerProdutos {
+        .contentProdutos {
+            .contentProduto {
+                max-width: 120px;  
+                p {
+                    font-size: .9rem;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 343px) {
+    .containerProdutos {
+        .contentProdutos {
+            .contentProduto {
+                max-width: 98.3px; 
+                p {
+                    font-size: .8rem;
+                }
+            }
+        }
     }
 }
