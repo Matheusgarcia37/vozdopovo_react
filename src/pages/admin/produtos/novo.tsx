@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { MdUploadFile } from "react-icons/md";
 import api from "../../../api";
 import styles from "../../../styles/admin/NovoProduto.module.scss"
 export default function novoProduto() {
@@ -9,16 +10,28 @@ export default function novoProduto() {
         aplicacao: string;
         marca: string;
         preco: number;
+        imagens: FileList;
     }
     const { register, handleSubmit, watch } = useForm<FormData>({
       
     });
-    
+    const imagensUpload = watch("imagens");
     const onSubmit = async (data: FormData) => {
         console.log(data)
-        const { codigo_interno, descricao, codigo_referencia, aplicacao, marca, preco } = data;
+        const { codigo_interno, descricao, codigo_referencia, aplicacao, marca, preco, imagens } = data;
         try {
-            await api.post("/produto", { codigo_interno, descricao, codigo_referencia, aplicacao, marca, preco  });
+            const formData = new FormData();
+            formData.append("codigo_interno", codigo_interno);
+            formData.append("descricao", descricao);
+            formData.append("codigo_referencia", codigo_referencia);
+            formData.append("aplicacao", aplicacao);
+            formData.append("marca", marca);
+            formData.append("preco", preco.toString());
+            for(let i = 0; i < imagens.length; i++) {
+                formData.append("file", imagens[i]);
+            }
+            
+            await api.post("/produto", formData);
         } catch (error) {
             console.log(error);
         }
@@ -53,7 +66,24 @@ export default function novoProduto() {
                         <label htmlFor="preco">Preço</label>
                         <input type="number" className="form-control" id="preco" {...register("preco")}/>
                     </div>
-
+                    {/* input de imagens */}
+                    <div className={styles.inputImagens}>
+                        <label htmlFor="imagens"><MdUploadFile size={25}></MdUploadFile> Upload de imagens
+                        </label>
+                        {
+                            imagensUpload && imagensUpload.length > 0 ?
+                            Array.from(imagensUpload).map((imagem, index) => {
+                                return (
+                                    <div key={index} className={styles.imagemUpload}>
+                                        <img src={URL.createObjectURL(imagem)} alt="imagem" />
+                                    </div>
+                                )
+                            })
+                            :
+                            null
+                        }
+                        <input type="file" className="form-control" multiple id="imagens" {...register("imagens")}/>
+                    </div>
 
                     <button type="submit">Criar Produto</button>
                 </div>

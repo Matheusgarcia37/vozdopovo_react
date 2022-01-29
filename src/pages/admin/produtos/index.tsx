@@ -10,6 +10,7 @@ import { FaEdit } from "react-icons/fa";
 import { RiDeleteBinFill } from "react-icons/ri";
 import * as XLSX from 'xlsx';
 import { MdArrowBack, MdArrowForward } from "react-icons/md";
+import { IoMdImages } from "react-icons/io";
 type Produtos = [
     {
         id: string;
@@ -30,21 +31,21 @@ export default function Produtos() {
     const MAX_LEFT = (MAX_ITEMS - 1) / 2;
     const limit = 100;
     const [offset, setOffset] = useState(0);
-  
-  
+
+
     const pages = Math.ceil(produtos.length / limit);
-  
+
     const current = offset ? (offset / limit) + 1 : 1;
-  
+
     const firstPage = Math.max(current - MAX_LEFT, 1);
-  
+
     const currentItens = produtos.slice(offset, offset + limit);
-    
-    
-  const changePage = (page: any) => {
-    setOffset((page - 1) * limit)
-  }
-   
+
+
+    const changePage = (page: any) => {
+        setOffset((page - 1) * limit)
+    }
+
     useEffect(() => {
         const getProdutos = async () => {
             const { data } = await api.get('/produto');;
@@ -56,7 +57,7 @@ export default function Produtos() {
     const deleteProduto = async (e: any, id: string) => {
         e.preventDefault();
         try {
-            await api.delete(`/produto`, {data: {id}});
+            await api.delete(`/produto`, { data: { id } });
             const newProdutos: any = produtos.filter((produto) => produto.id !== id);
             setProdutos(newProdutos);
         } catch (error) {
@@ -64,7 +65,24 @@ export default function Produtos() {
         }
     }
 
-    const readExel= async (file: any) => {   
+    const changeImages = async (e: any, id: string, descricao: string) => {
+        e.preventDefault();
+        try {
+            console.log(e.target.files);
+            const formData = new FormData();
+            for(let i = 0; i < e.target.files.length; i++) {
+                formData.append('file', e.target.files[i]);
+            }
+            formData.append('id', id);
+            const teste = await api.put(`/produto/images`, formData);
+            e.target.value = "";
+            console.log(teste);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const readExel = async (file: any) => {
         const promise = new Promise((resolve, reject) => {
             const fileReader = new FileReader();
             fileReader.readAsArrayBuffer(file);
@@ -97,7 +115,7 @@ export default function Produtos() {
                 updatedAt: produto.updatedAt
             }
         });
-        
+
         //enviar produtos para o banco de dados
         try {
             const { data } = await api.post("/produto/import", newProdutos);
@@ -113,44 +131,44 @@ export default function Produtos() {
                 <h1>Produtos</h1>
                 {/* botâo para criar novos produtos */}
                 <div>
-                <input 
-                    type="file" style={{display: 'none'}} name="inputXlsx" id="inputXlsx"
-                    onChange={(e: any) => {
-                        const file = e.target.files[0];
-                        readExel(file);
-                        e.target.value = "";
+                    <input
+                        type="file" style={{ display: 'none' }} name="inputXlsx" id="inputXlsx"
+                        onChange={(e: any) => {
+                            const file = e.target.files[0];
+                            readExel(file);
+                            e.target.value = "";
 
-                    }}
-                />
-                <label htmlFor="inputXlsx" className={styles.buttonNovoProduto}>Importar produtos</label>
-                <Link href="/admin/produtos/novo">
-                    <a className={styles.buttonNovoProduto}>
-                        Criar Produto
-                    </a>
-                </Link>
+                        }}
+                    />
+                    <label htmlFor="inputXlsx" className={styles.buttonNovoProduto}>Importar produtos</label>
+                    <Link href="/admin/produtos/novo">
+                        <a className={styles.buttonNovoProduto}>
+                            Criar Produto
+                        </a>
+                    </Link>
                 </div>
             </div>
             <div className={styles.pagination}>
                 <button className={styles.ant_next} onClick={() => changePage(current - 1)} disabled={current == 1}>
-                  <MdArrowBack></MdArrowBack>
+                    <MdArrowBack></MdArrowBack>
                 </button>
                 {Array.from(Array(Math.min(MAX_ITEMS, pages)), (_, index) => {
-                  return index + firstPage;
+                    return index + firstPage;
                 }).map((page: any, key) => {
-                  if (page <= pages) {
-                    return (
-                      (
-                        <button key={key} onClick={() => {
-                          changePage(page);
-                        }} className={page === current ? styles.active_pagination + ' ' + styles.pagination_pagina : styles.pagination_pagina}>{page}</button>
-                      )
-                    )
-                  }
+                    if (page <= pages) {
+                        return (
+                            (
+                                <button key={key} onClick={() => {
+                                    changePage(page);
+                                }} className={page === current ? styles.active_pagination + ' ' + styles.pagination_pagina : styles.pagination_pagina}>{page}</button>
+                            )
+                        )
+                    }
                 })}
                 <button className={styles.ant_next} disabled={current == pages} onClick={() => changePage(current + 1)}>
-                  <MdArrowForward></MdArrowForward>
+                    <MdArrowForward></MdArrowForward>
                 </button>
-              </div>
+            </div>
             <div className={styles.containerTableProdutos}><table className={styles.tableProdutos}>
                 <thead className={styles.headerTableProdutos}>
                     <tr>
@@ -161,6 +179,7 @@ export default function Produtos() {
                         <th>Marca</th>
                         <th>Data de criação</th>
                         <th>Ultima atualização</th>
+                        <th>Imagens</th>
                         <th>Editar</th>
                         <th>Deletar</th>
                     </tr>
@@ -175,6 +194,14 @@ export default function Produtos() {
                             <td>{produto.marca}</td>
                             <td>{formatData(produto.createdAt)}</td>
                             <td>{formatData(produto.updatedAt)}</td>
+                            <td>
+
+                                <label htmlFor={`images${key}`}>
+                                    <IoMdImages size={25} className={styles.iconButton}></IoMdImages>
+                                </label>
+                                <input type="file" className="form-control" multiple id={`images${key}`} style={{ display: 'none' }} onChange={(e) => changeImages(e, produto.id, produto.descricao)}
+                                />
+                            </td>
                             <td>
                                 <Link href={{
                                     pathname: `/admin/produtos/editar`,
@@ -214,7 +241,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     return {
         props: {
-            
+
         }
     }
 }

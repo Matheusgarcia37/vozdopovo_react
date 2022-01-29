@@ -1,0 +1,122 @@
+.container {
+    height: 100%;
+    width: 100%;
+    max-width: 1910px;
+    display: flex;
+    justify-content: center;
+    margin: 1rem auto;
+    .content {
+        display: flex;
+        width: 100%;
+        .illustration {
+            flex: 2;
+            justify-content: center;
+            width: 100%;
+            position: relative;
+
+            .destaqueImage {
+                display: flex;
+                justify-content: center;
+                img {
+                    height: 500px;
+                }
+            }
+
+            .otherImages {
+                margin: 1rem 0;
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                img {
+                    width: 150px;
+                    height: 150px;
+                    margin-right: 1rem;
+                    margin-bottom: .2rem;
+                    :last-child {
+                        margin-right: 0;
+                    }
+                    transition: all .3s ease;
+                    cursor: pointer;
+                }
+
+                .activeImage {
+                    border: 3px solid var(--secondary-color);
+                    opacity: .9;
+                }
+               
+            }
+
+            .buttonChangeImage {
+                z-index: 5;
+                position: absolute;
+                right: 50px;
+                :first-child{
+                    margin-right: .6rem;
+                }
+                button {
+                    background-color: white;
+                    border: 1px solid var(--primary-color);
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .description {
+            flex: 1;
+            margin-top: 2rem;
+            h2 {
+                font-size: 1.6rem;
+                font-weight: bold;
+                margin-bottom: 1rem;
+                color: var(--primary-color);;
+            }
+            p {
+                font-size: 1rem;
+                font-weight: 500;
+                margin-bottom: 1rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        .content {
+            flex-direction: column;
+            .illustration {
+                flex: 1;
+                .destaqueImage {
+                    img {
+                        width: 300px;
+                        height: auto;
+                    }
+                }
+                .otherImages {
+                    img {
+                        width: 100px;
+                        height: 100px;
+                        margin-bottom: 0;
+                    }
+                }
+            }
+
+            .description {
+                padding: 0 1rem;
+                flex: 1;
+                margin-top: 0rem;
+                text-align: justify;
+                h2 {
+                    font-size: 1.6rem;
+                    font-weight: bold;
+                    margin-bottom: 1rem;
+                    color: var(--primary-color);;
+                }
+                p {
+                    font-size: 1rem;
+                    font-weight: 500;
+                    margin-bottom: 1rem;
+                }
+            }
+        }
+    }
+}

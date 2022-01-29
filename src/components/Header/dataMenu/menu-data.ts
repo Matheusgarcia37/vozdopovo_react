@@ -5,7 +5,7 @@ import { BsHandbagFill } from "react-icons/bs";
 export const dataMenuAdmin = [
     {
         url: '/admin/dashBoard',
-        name: 'Dashboard',
+        name: 'Painel',
         icon: MdSpaceDashboard,
     },
     {

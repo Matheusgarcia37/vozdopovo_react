@@ -47,7 +47,8 @@
         
     }   
     .filtroPorPesquisa {
-        display: flex;
+        form {
+            display: flex;
         margin-left: 2.3rem;
         .caixaIconePesquisa {
             background-color: var(--primary-color);
@@ -65,11 +66,13 @@
                 color: var(--primary-color);
             }
         }
+        }
     }
   
 }
 .containerProdutos {
     width: 100%;
+    min-height: 450px;
     .contentProdutos {
         width: 100%;
         display: flex;
@@ -169,6 +172,12 @@
 
 // media max-width: 1050px
 @media (max-width: 1050px) {
+    .pagination {
+        flex-wrap: wrap;
+        .pagination_pagina {
+            margin: .2rem .2rem;
+        }
+    } 
    .filtroInfo {
        display: none;
    }
@@ -189,20 +198,23 @@
           font-weight: 500;
       }
       .filtroPorPesquisa {
-          max-height: 36px;
-          margin: 0;
           width: 100%;
-          input {
+         form {
             max-height: 36px;
-            box-shadow: none;
-            border: 1px solid rgba(0, 0, 0, 0.123);
-            border-radius: 5px 0 0 5px;
-            border-right: 0;
             margin: 0;
             width: 100%;
-            font-size: 1rem;
-          } 
-          margin-bottom: .5px;
+            input {
+              max-height: 36px;
+              box-shadow: none;
+              border: 1px solid rgba(0, 0, 0, 0.123);
+              border-radius: 5px 0 0 5px;
+              border-right: 0;
+              margin: 0;
+              width: 100%;
+              font-size: 1rem;
+            } 
+            margin-bottom: .5px;
+         }
       }
       margin-bottom: .5rem;
       .selectsFilterMobile {
@@ -218,7 +230,8 @@
     .containerProdutos {
         .contentProdutos {
             .contentProduto {
-                max-width: 120px;  
+                max-width: 128px;  
+                margin: 0.6rem 2%;
                 p {
                     font-size: .9rem;
                 }
@@ -228,10 +241,17 @@
 }
 
 @media (max-width: 343px) {
+    .pagination {
+        flex-wrap: wrap;
+        .pagination_pagina {
+            margin: .2rem .2rem;
+        }
+    } 
     .containerProdutos {
         .contentProdutos {
             .contentProduto {
-                max-width: 98.3px; 
+                max-width: 110px;  
+                margin: 0.6rem 1%;
                 p {
                     font-size: .8rem;
                 }

@@ -7,7 +7,7 @@ export default function AcessAdmin() {
     return (
         <div className={styles.container}>
             <div>
-                <h1>acess dashBoard</h1>
+                <h1>Bem vindo ao Sistema de Controle</h1>
             </div>
         </div>
     )
