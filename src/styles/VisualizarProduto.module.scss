@@ -19,6 +19,7 @@
                 justify-content: center;
                 img {
                     height: 500px;
+                    max-width: 500px;
                 }
             }
 
@@ -104,12 +105,20 @@
             .illustration {
                 flex: 1;
                 .destaqueImage {
+                    height: 300px;
+                    max-width: 300px;
+                    margin: 0 auto;
                     img {
-                        width: 300px;
-                        height: auto;
+                        height: 300px;
+                        max-width: 300px;
                     }
                 }
                 .otherImages {
+                   .otherImage{
+                    width: 100px;
+                    height: 100px;
+                    margin-bottom: 0;
+                   }
                     img {
                         width: 100px;
                         height: 100px;

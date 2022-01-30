@@ -3,6 +3,8 @@ import styles from "../../../styles/admin/EditarUsuarios.module.scss";
 import api, { Api } from "../../../api";
 import { GetServerSideProps } from "next";
 import { parseCookies } from "nookies";
+import Swal from "sweetalert2";
+import router from "next/router";
 type User = {
     id: string;
     username: string;
@@ -24,8 +26,22 @@ export default function EditarUsuarios({user}: {user: User}) {
         const { username, password } = data;
         try {
             await api.put("/user", { id: user.id, username, password });
+            Swal.fire({
+                title: "Sucesso!",
+                text: "Usuário editado com sucesso!",
+                icon: "success",
+                confirmButtonText: "Ok"
+            }).then(() => {
+                router.push("/admin/usuarios");
+            });
         } catch (error) {
             console.log(error);
+            Swal.fire({
+                title: "Erro",
+                text: "Ocorreu um erro ao editar o usuário",
+                icon: "error",
+                confirmButtonText: "Ok"
+            });
         }
     }
   

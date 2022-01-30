@@ -5,6 +5,7 @@ import styles from "../styles/LoginAdmin.module.scss";
 import Image from 'next/image';
 import logo from '../images/logoFundoBranco.jpeg';
 import { AuthContext } from '../contexts/AuthContext';
+import Swal from 'sweetalert2'
 export default function LoginAdmin() {
     const { signIn } = useContext(AuthContext);
 
@@ -36,6 +37,12 @@ export default function LoginAdmin() {
         } catch (error: any) {
             if(error.response){
                 console.log(error.response.data.error);
+                Swal.fire({
+                    title: 'Erro',
+                    text: error.response.data.error,
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                })
             }   
         }
     }

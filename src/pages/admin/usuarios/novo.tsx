@@ -1,22 +1,36 @@
+import router from "next/router";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 import api from "../../../api";
 import styles from "../../../styles/admin/NovoUsuario.module.scss"
-export default function novoUsuario() {
+export default function NovoUsuario() {
     type FormData = {
         username: string;
         password: string;
     }
-    const { register, handleSubmit, watch } = useForm<FormData>({
-      
-    });
+    const { register, handleSubmit, watch } = useForm<FormData>({});
     
     const onSubmit = async (data: any) => {
         console.log(data)
         const { username, password } = data;
         try {
             await api.post("/user", { username, password });
+            Swal.fire({
+                title: "Sucesso!",
+                text: "Usuário criado com sucesso!",
+                icon: "success",
+                confirmButtonText: "Ok"
+            }).then(() => {
+                router.push("/admin/usuarios");
+            });
         } catch (error) {
             console.log(error);
+            Swal.fire({
+                title: "Erro",
+                text: "Ocorreu um erro ao criar o usuário",
+                icon: "error",
+                confirmButtonText: "Ok"
+            });
         }
     }
   

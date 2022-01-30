@@ -6,6 +6,8 @@ import { parseCookies } from "nookies";
 import { MdUploadFile } from "react-icons/md";
 import { FaTrashAlt } from "react-icons/fa";
 import { useState } from "react";
+import Swal from "sweetalert2";
+import Image from "next/image";
 type Produto = {
     id: string;
     codigo_interno: string;
@@ -14,12 +16,12 @@ type Produto = {
     aplicacao: string;
     marca: string;
     preco: number;
-    uploads: Image[];
+    uploads: Imagem[];
 }
 
-type Image = {
-    id: string; 
-    url: string 
+type Imagem = {
+    id: string;
+    url: string
 }
 
 export default function EditarProdutos({ produto: prod }: { produto: Produto }) {
@@ -63,34 +65,51 @@ export default function EditarProdutos({ produto: prod }: { produto: Produto }) 
             }
             await api.put("/produto", formData);
             atualizaProduto();
-        } catch (error) {
+        } catch (error: any) {
             console.log(error);
+            Swal.fire({
+                title: "Erro",
+                text: "Ocorreu um erro ao atualizar o produto",
+                icon: "error",
+                confirmButtonText: "Ok"
+            });
         }
     }
 
-    const excluirFoto = async (e: any, imagem: Image) => {
+    const excluirFoto = async (e: any, imagem: Imagem) => {
         e.preventDefault();
 
         try {
-        await api.delete(`/produto/images/${imagem.id}`);
-        //removo a imagem de dentro de produto.uploads
-        const newProduto = { ...produto };
-        newProduto.uploads = newProduto.uploads.filter(i => i.id !== imagem.id);
-        setProduto(newProduto);
-
+            await api.delete(`/produto/images/${imagem.id}`);
+            //removo a imagem de dentro de produto.uploads
+            const newProduto = { ...produto };
+            newProduto.uploads = newProduto.uploads.filter(i => i.id !== imagem.id);
+            setProduto(newProduto);
         }
-        catch (error) {
+        catch (error: any) {
             console.log(error);
+            Swal.fire({
+                title: "Erro",
+                text: "Ocorreu um erro ao excluir a imagem",
+                icon: "error",
+                confirmButtonText: "Ok"
+            });
         }
     }
 
     const atualizaProduto = async () => {
-       try {
+        try {
             const { data } = await api.post("/produto/getProdutoById", { id: produto.id });
             setProduto(data);
-       } catch (error) {
+            Swal.fire({
+                title: "Sucesso",
+                text: "Produto atualizado com sucesso",
+                icon: "success",
+                confirmButtonText: "Ok"
+            });
+        } catch (error) {
             console.log(error);
-       }
+        }
     }
 
     return (
@@ -129,11 +148,11 @@ export default function EditarProdutos({ produto: prod }: { produto: Produto }) 
                             {produto?.uploads?.map((imagem, index) => {
                                 return (
                                     <div key={index} className={styles.imagem}>
-                                        <img src={imagem.url} alt="imagem" onClick={(e) => {
+                                        <Image height={150} width={150} src={imagem.url} alt="imagem" onClick={(e) => {
                                             e.preventDefault();
                                             window.open(imagem.url, '_blank');
-                                        }}/>
-                                        <button type="button" className={styles.btn_excluir} onClick={(e) => {excluirFoto(e, imagem)}}>
+                                        }} />
+                                        <button type="button" className={styles.btn_excluir} onClick={(e) => { excluirFoto(e, imagem) }}>
                                             <FaTrashAlt />
                                         </button>
                                     </div>
@@ -151,7 +170,7 @@ export default function EditarProdutos({ produto: prod }: { produto: Produto }) 
                                 Array.from(imagensUpload).map((imagem, index) => {
                                     return (
                                         <div key={index} className={styles.imagemUpload}>
-                                            <img src={URL.createObjectURL(imagem)} alt="imagem" />
+                                            <Image height={100} width={100} src={URL.createObjectURL(imagem)} alt="imagem" />
                                         </div>
                                     )
                                 })

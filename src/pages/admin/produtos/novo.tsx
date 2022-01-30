@@ -2,7 +2,10 @@ import { useForm } from "react-hook-form";
 import { MdUploadFile } from "react-icons/md";
 import api from "../../../api";
 import styles from "../../../styles/admin/NovoProduto.module.scss"
-export default function novoProduto() {
+import Image from "next/image";
+import Swal from "sweetalert2";
+import router from "next/router";
+export default function NovoProduto() {
     type FormData = {
         codigo_interno: string;
         descricao: string;
@@ -32,8 +35,22 @@ export default function novoProduto() {
             }
             
             await api.post("/produto", formData);
+            Swal.fire({
+                title: "Sucesso!",
+                text: "Produto cadastrado com sucesso!",
+                icon: "success",
+                confirmButtonText: "Ok"
+            }).then(() => {
+                router.push("/admin/produtos");
+            });
         } catch (error) {
             console.log(error);
+            Swal.fire({
+                title: "Erro",
+                text: "Ocorreu um erro ao cadastrar o produto",
+                icon: "error",
+                confirmButtonText: "Ok"
+            })
         }
     }
   
@@ -75,7 +92,7 @@ export default function novoProduto() {
                             Array.from(imagensUpload).map((imagem, index) => {
                                 return (
                                     <div key={index} className={styles.imagemUpload}>
-                                        <img src={URL.createObjectURL(imagem)} alt="imagem" />
+                                        <Image height={150} width={150} src={URL.createObjectURL(imagem)} alt="imagem" />
                                     </div>
                                 )
                             })

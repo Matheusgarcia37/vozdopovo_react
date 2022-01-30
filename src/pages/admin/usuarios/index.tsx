@@ -8,6 +8,7 @@ import Link from "next/link";
 import styles from '../../../styles/admin/Usuarios.module.scss';
 import { FaEdit } from "react-icons/fa";
 import { RiDeleteBinFill } from "react-icons/ri";
+import Swal from "sweetalert2";
 type Users = [
     {
         id: string;
@@ -32,8 +33,19 @@ export default function Usuarios() {
             await api.delete(`/user`, {data: {id}});
             const newUsers: any = usuarios.filter((user) => user.id !== id);
             setUsuarios(newUsers);
+            Swal.fire({
+                title: "Usuário deletado com sucesso!",
+                icon: "success",
+                confirmButtonText: "Ok"
+            });
         } catch (error) {
             console.log(error)
+            Swal.fire({
+                title: "Erro",
+                text: "Ocorreu um erro ao deletar o usuário",
+                icon: "error",
+                confirmButtonText: "Ok"
+            });
         }
     }
 

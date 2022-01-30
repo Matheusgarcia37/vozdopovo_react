@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import api from "../api";
 import styles from "../styles/VisualizarProduto.module.scss";
 import { MdArrowBack, MdArrowForward } from 'react-icons/md';
+import Image from "next/image";
 
 export default function VisualizarProduto() {
     type Data = {
@@ -24,7 +25,6 @@ export default function VisualizarProduto() {
         "https://www.mgapecasagricolas.com.br/imagens/informacoes/fabricantes-pecas-maquinas-agricolas-02.jpg",
         "https://image.made-in-china.com/202f0j10IUWGzowRHMrm/Investment-Casting-Farm-Machinery-Parts-Steel-Casting-Deep-Plowing-Colt-Boot-Cultivator-Points-Subsoiler-Ripper-Teeth.jpg",
         "https://sc04.alicdn.com/kf/H03dbef7e4c4340bea1e7c8de8f108dbfT.jpg",  
-     
     ];
 
     const consultarPreco = (produto: Data) => {
@@ -57,43 +57,48 @@ export default function VisualizarProduto() {
                     images = data.uploads.map((upload: any) => upload.url);
                 }
             }
-            setImagesOfProduto( images?.length > 0 ? images : imagesProds);
+            setImagesOfProduto(images?.length > 0 ? images : imagesProds);
         }
         loadProduto();
-    }, []);
+    },[]);
+
     return (
         <div className={styles.container}>
             {produto && (
                 <div className={styles.content}>
-                    <div className={styles.illustration}>
-                        <div className={styles.destaqueImage}>
-                            <img src={imagesOfProduto[currentImage]} alt="imagem do produto" />
-                        </div>
-                        {/* div para escolher outras imagens */}
-                        <div>
-                            <div className={styles.buttonChangeImage}>
-                                <button onClick={() => {
-                                    setCurrentImage(currentImage - 1 >= 0 ? currentImage - 1 : imagesOfProduto.length - 1);
-                                }}>
-                                    <MdArrowBack size={30} color="#000" />
-                                </button>
-                                <button onClick={() => {
-                                    setCurrentImage(currentImage + 1 === imagesOfProduto.length ? 0 : currentImage + 1);
-                                }}>
-                                    <MdArrowForward size={30} color="#000" />
-                                </button>
-                            </div>
-                            <div className={styles.otherImages}>
-                                {imagesOfProduto.map((image, index) => (
-                                    <img src={image} alt="imagem do produto" key={index} onClick={() => {
-                                        setCurrentImage(index);
-                                    }}
-                                        className={index === currentImage ? styles.activeImage : ''}
-                                    />
-                                ))}
-                            </div>
-                        </div>
-                    </div>
+                    {imagesOfProduto.length > 0 && (
+                          <div className={styles.illustration}>
+                          <div className={styles.destaqueImage}>
+                              <Image  height={500} width={500} layout="intrinsic" src={imagesOfProduto[currentImage]} alt="imagem do produto" />
+                          </div>
+                          {/* div para escolher outras imagens */}
+                          <div>
+                              <div className={styles.buttonChangeImage}>
+                                  <button onClick={() => {
+                                      setCurrentImage(currentImage - 1 >= 0 ? currentImage - 1 : imagesOfProduto.length - 1);
+                                  }}>
+                                      <MdArrowBack size={30} color="#000" />
+                                  </button>
+                                  <button onClick={() => {
+                                      setCurrentImage(currentImage + 1 === imagesOfProduto.length ? 0 : currentImage + 1);
+                                  }}>
+                                      <MdArrowForward size={30} color="#000" />
+                                  </button>
+                              </div>
+                              <div className={styles.otherImages}>
+                                  {imagesOfProduto.map((image, index) => (
+                                     <div key={index} className={styles.otherImage + ' ' + (index === currentImage ? styles.activeImage : '')}>
+                                          <Image height={150} width={150} src={image} alt="imagem do produto"  onClick={() => {
+                                          setCurrentImage(index);
+                                      }}
+                                          className={index === currentImage ? styles.activeImage : ''}
+                                      />
+                                     </div>
+                                  ))}
+                              </div>
+                          </div>
+                      </div>
+                    )}
                     <div className={styles.description}>
                         <h2>{produto.descricao}</h2>
                         <p>Codigo de Referência: {produto.codigo_interno}</p>

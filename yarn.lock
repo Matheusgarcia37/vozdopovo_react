@@ -3232,6 +3232,11 @@ supports-color@^8.0.0:
   dependencies:
     has-flag "^4.0.0"
 
+sweetalert2@^11.3.10:
+  version "11.3.10"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-11.3.10.tgz#7d6c904c95edb50ac37200b1bd528fe47b827edf"
+  integrity sha512-/3nhG5QCREkPUndAbOF9h1IM7lgCIU/evsNXd/YUfa9eJ04M+hxksxIio8hhtH16UnWd2GvJ+zvFQ8H9hLRhsw==
+
 swiper@^7.3.1:
   version "7.3.1"
   resolved "https://registry.yarnpkg.com/swiper/-/swiper-7.3.1.tgz#697734231d43c67c0e03134c969ebbd5e5037b54"

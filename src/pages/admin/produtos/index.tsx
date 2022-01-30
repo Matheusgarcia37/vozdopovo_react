@@ -13,6 +13,7 @@ import { MdArrowBack, MdArrowForward } from "react-icons/md";
 import { IoMdImages } from "react-icons/io";
 import { AiOutlineSearch } from "react-icons/ai";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 type Produtos = [
     {
         id: string;
@@ -66,12 +67,18 @@ export default function Produtos() {
             await api.delete(`/produto`, { data: { id } });
             const newProdutos: any = produtos.filter((produto) => produto.id !== id);
             setProdutos(newProdutos);
-        } catch (error) {
+        } catch (error: any) {
             console.log(error)
+            Swal.fire({
+                title: 'Erro',
+                text: error.response.data.error,
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            })
         }
     }
 
-    const changeImages = async (e: any, id: string, descricao: string) => {
+    const changeImages = async (e: any, id: string) => {
         e.preventDefault();
         try {
             console.log(e.target.files);
@@ -83,8 +90,14 @@ export default function Produtos() {
             const teste = await api.put(`/produto/images`, formData);
             e.target.value = "";
             console.log(teste);
-        } catch (error) {
+        } catch (error: any) {
             console.log(error)
+            Swal.fire({
+                title: 'Erro ao enviar imagens',
+                text: `${error.response.data.error}`,
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            });
         }
     }
 
@@ -219,7 +232,7 @@ export default function Produtos() {
                                 <label htmlFor={`images${key}`}>
                                     <IoMdImages size={25} className={styles.iconButton}></IoMdImages>
                                 </label>
-                                <input type="file" className="form-control" multiple id={`images${key}`} style={{ display: 'none' }} onChange={(e) => changeImages(e, produto.id, produto.descricao)}
+                                <input type="file" className="form-control" multiple id={`images${key}`} style={{ display: 'none' }} onChange={(e) => changeImages(e, produto.id)}
                                 />
                             </td>
                             <td>
