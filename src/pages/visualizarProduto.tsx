@@ -27,6 +27,16 @@ export default function VisualizarProduto() {
      
     ];
 
+    const consultarPreco = (produto: Data) => {
+        //enviar uma mensagem por whatsapp para o numero 5537999980449
+        //com o produto.descricao e o produto.codigo_interno
+        let message = `Olá gostaria de saber mais sobre o produto: \n\n${produto.descricao}\nCodigo ${produto.codigo_interno}`;
+        message = window.encodeURIComponent(message);
+        window.open(
+            `https://api.whatsapp.com/send?phone=5537999980449&text=${message}`
+        );
+    }
+
 
     useEffect(() => {
         async function loadProduto() {
@@ -86,8 +96,11 @@ export default function VisualizarProduto() {
                     </div>
                     <div className={styles.description}>
                         <h2>{produto.descricao}</h2>
-                        <p>Cod: {produto.codigo_interno}</p>
-                        <h4>{produto.preco}</h4>
+                        <p>Codigo de Referência: {produto.codigo_interno}</p>
+                        <button className={styles.consultPrice} onClick={(e) => {
+                            e.preventDefault();
+                            consultarPreco(produto);
+                        }}>Colsultar preço</button>
                     </div>
                 </div>
             )}

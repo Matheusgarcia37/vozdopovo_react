@@ -11,6 +11,8 @@ import { RiDeleteBinFill } from "react-icons/ri";
 import * as XLSX from 'xlsx';
 import { MdArrowBack, MdArrowForward } from "react-icons/md";
 import { IoMdImages } from "react-icons/io";
+import { AiOutlineSearch } from "react-icons/ai";
+import { useForm } from "react-hook-form";
 type Produtos = [
     {
         id: string;
@@ -26,6 +28,9 @@ type Produtos = [
 ]
 export default function Produtos() {
     const [produtos, setProdutos] = useState<Produtos | []>([]);
+    const [produtosData, setProdutosData] = useState<Produtos | []>([]);
+
+    const { register, handleSubmit } = useForm({});
 
     const MAX_ITEMS = 9;
     const MAX_LEFT = (MAX_ITEMS - 1) / 2;
@@ -48,7 +53,8 @@ export default function Produtos() {
 
     useEffect(() => {
         const getProdutos = async () => {
-            const { data } = await api.get('/produto');;
+            const { data } = await api.get('/produto');
+            setProdutosData(data);
             setProdutos(data);
         }
         getProdutos();
@@ -70,7 +76,7 @@ export default function Produtos() {
         try {
             console.log(e.target.files);
             const formData = new FormData();
-            for(let i = 0; i < e.target.files.length; i++) {
+            for (let i = 0; i < e.target.files.length; i++) {
                 formData.append('file', e.target.files[i]);
             }
             formData.append('id', id);
@@ -125,6 +131,16 @@ export default function Produtos() {
         }
     }
 
+    const filterProds = (e: any) => {
+        let search = e.descricao.toLowerCase();
+        const newProds: any = produtosData.filter((produto: any) => {
+            return produto.descricao.toLowerCase().includes(search);
+        })
+        console.log('newProds', newProds);
+        if (newProds) setProdutos(newProds);
+        setOffset(0);
+    }
+
     return (
         <div className={styles.container}>
             <div className={styles.headerContent}>
@@ -148,6 +164,10 @@ export default function Produtos() {
                     </Link>
                 </div>
             </div>
+            <form onSubmit={handleSubmit(filterProds)} className={styles.filtroProduto}>
+                <input type="text" placeholder="Pesquisar produtos" className={styles.inputPesquisa} {...register('descricao')} />
+                <button className={styles.caixaIconePesquisa}><AiOutlineSearch /></button>
+            </form>
             <div className={styles.pagination}>
                 <button className={styles.ant_next} onClick={() => changePage(current - 1)} disabled={current == 1}>
                     <MdArrowBack></MdArrowBack>
