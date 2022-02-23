@@ -9,7 +9,6 @@ export const Api = (ctx?: any): AxiosInstance  => {
         //baseURL: 'http://localhost:3001',
    
         baseURL: 'https://jr-agropecas.herokuapp.com/',
-
     });
 
     if(token){
