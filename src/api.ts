@@ -7,6 +7,7 @@ export const Api = (ctx?: any): AxiosInstance  => {
 
     const api = axios.create({
         //baseURL: 'http://localhost:3001',
+        
         baseURL: 'https://jr-agropecas.herokuapp.com/',
     });
 
